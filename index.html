@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos de la Semana - Banquetera v5.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .sync-status {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(40, 167, 69, 0.95);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.8em;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .admin-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8em;
+            color: #333;
+            border: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .admin-panel {
+            display: none;
+            background: #f8f9fa;
+            border-bottom: 3px solid #dee2e6;
+            padding: 30px;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .main-content {
+            padding: 40px 30px;
+        }
+
+        .week-info {
+            text-align: center;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .week-info h2 {
+            color: #ff6b6b;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .event-card {
+            background: white;
+            border: 3px solid #e9ecef;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-color: #ff6b6b;
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1f3f4;
+        }
+
+        .event-title {
+            color: #ff6b6b;
+            font-size: 1.6em;
+            font-weight: bold;
+        }
+
+        .event-date {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .roles-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .role-button {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px solid #dee2e6;
+            padding: 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .role-button.supervisor {
+            border-color: #007bff;
+            color: #007bff;
+        }
+
+        .role-button.supervisor:hover {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        .role-button.supermetre {
+            border-color: #28a745;
+            color: #28a745;
+        }
+
+        .role-button.supermetre:hover {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+        }
+
+        .role-button.cocina {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+        .role-button.cocina:hover {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .role-emoji {
+            font-size: 2.5em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: none;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .document-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #ff6b6b;
+            margin-bottom: 15px;
+        }
+
+        .view-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .empty-state .emoji {
+            font-size: 5em;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+
+        .password-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .password-modal.active {
+            display: flex;
+        }
+
+        .password-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid #28a745;
+        }
+
+        @media (max-width: 768px) {
+            .roles-container {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .admin-toggle, .sync-status {
+                position: static;
+                margin-bottom: 15px;
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sync-status">Sistema listo</div>
+    <button class="admin-toggle" onclick="toggleAdmin()">Admin</button>
+
+    <!-- Modal para contraseña -->
+    <div id="passwordModal" class="password-modal">
+        <div class="password-content">
+            <h3 style="color: #ff6b6b; margin-bottom: 15px;">Acceso Admin</h3>
+            <input type="password" id="passwordInput" placeholder="Contraseña" style="width: 100%; padding: 15px; margin: 20px 0; border: 2px solid #e9ecef; border-radius: 10px; text-align: center;">
+            <div>
+                <button class="btn btn-primary" onclick="checkPassword()">Acceder</button>
+                <button class="btn" onclick="closePasswordModal()" style="background: #6c757d; color: white;">Cancelar</button>
+            </div>
+            <div id="passwordError" style="color: #dc3545; margin-top: 15px; display: none;">Contraseña incorrecta</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Panel Admin -->
+        <div id="adminPanel" class="admin-panel">
+            <h2 style="color: #ff6b6b; margin-bottom: 25px;">Panel Administrativo v5.0</h2>
+            
+            <div style="background: #d1ecf1; padding: 20px; border-radius: 15px; margin-bottom: 25px;">
+                <h3>Sistema Simplificado</h3>
+                <p>Esta versión funciona completamente local. Los eventos se mantienen en el navegador de cada dispositivo.</p>
+                <p><strong>Para sincronizar:</strong> Usa "Exportar" e "Importar" para compartir eventos entre dispositivos.</p>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <button class="btn btn-primary" onclick="exportEvents()">Exportar Eventos</button>
+                <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importEvents(event)">
+                <button class="btn" onclick="document.getElementById('importFile').click()" style="background: #28a745; color: white;">Importar Eventos</button>
+            </div>
+
+            <form id="eventForm">
+                <div class="form-group">
+                    <label>Centro de Eventos</label>
+                    <input type="text" id="eventCenter" required>
+                </div>
+                <div class="form-group">
+                    <label>Fecha</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Hora</label>
+                    <input type="time" id="eventTime" value="19:00" required>
+                </div>
+                <div class="form-group">
+                    <label>Invitados</label>
+                    <input type="number" id="guestCount" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Observaciones</label>
+                    <textarea id="observations" rows="3"></textarea>
+                </div>
+                
+                <div id="driveLinksContainer" style="background: #e3f2fd; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                    <h4>Documentos de Google Drive</h4>
+                    <div id="driveLinksList"></div>
+                    <button type="button" class="btn btn-primary" onclick="addDriveLink()">Agregar Documento</button>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Crear Evento</button>
+            </form>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="header">
+            <h1>Eventos de la Semana</h1>
+            <p>Selecciona tu evento y rol para ver los documentos</p>
+        </div>
+
+        <div class="main-content">
+            <div class="week-info">
+                <h2>Eventos Disponibles</h2>
+                <div id="weekDates">Eventos cargados localmente</div>
+            </div>
+
+            <div id="eventsContainer" class="events-grid"></div>
+        </div>
+    </div>
+
+    <!-- Modal documentos -->
+    <div id="documentsModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div id="modalTitle" style="color: #ff6b6b; font-size: 2em; margin-bottom: 10px;"></div>
+                <div id="modalSubtitle" style="color: #666;"></div>
+            </div>
+            <div id="modalDocuments"></div>
+        </div>
+    </div>
+
+    <script>
+        let events = JSON.parse(localStorage.getItem('banquetera_events_v5')) || [];
+        let isAdmin = false;
+        let driveLinksCount = 0;
+
+        // Eventos de ejemplo para demo
+        if (events.length === 0) {
+            events = [
+                {
+                    id: Date.now(),
+                    center: "Centro de Eventos El Jardín",
+                    date: "2024-12-15",
+                    time: "19:00",
+                    guestCount: 120,
+                    observations: "Evento de prueba",
+                    documents: [
+                        {
+                            name: "Menú Principal",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Lista de Invitados",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre"]
+                        }
+                    ]
+                }
+            ];
+            saveEvents();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            displayEvents();
+        });
+
+        function saveEvents() {
+            localStorage.setItem('banquetera_events_v5', JSON.stringify(events));
+        }
+
+        function toggleAdmin() {
+            if (!isAdmin) {
+                document.getElementById('passwordModal').classList.add('active');
+                document.getElementById('passwordInput').focus();
+            } else {
+                toggleAdminPanel();
+            }
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            if (password === 'Pagoda1234') {
+                isAdmin = true;
+                closePasswordModal();
+                toggleAdminPanel();
+            } else {
+                document.getElementById('passwordError').style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+            }
+        }
+
+        function closePasswordModal() {
+            document.getElementById('passwordModal').classList.remove('active');
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+        }
+
+        function toggleAdminPanel() {
+            const panel = document.getElementById('adminPanel');
+            const btn = document.querySelector('.admin-toggle');
+            
+            if (panel.classList.contains('active')) {
+                panel.classList.remove('active');
+                btn.textContent = 'Admin';
+                btn.style.background = 'rgba(255, 255, 255, 0.9)';
+            } else {
+                panel.classList.add('active');
+                btn.textContent = 'Cerrar';
+                btn.style.background = 'rgba(220, 53, 69, 0.9)';
+                btn.style.color = 'white';
+                if (driveLinksCount === 0) addDriveLink();
+            }
+        }
+
+        function addDriveLink() {
+            driveLinksCount++;
+            const container = document.getElementById('driveLinksList');
+            const linkItem = document.createElement('div');
+            linkItem.innerHTML = `
+                <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                    <div style="margin-bottom: 10px;">
+                        <label>Nombre:</label>
+                        <input type="text" placeholder="Ej: Menú Principal" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <label>Enlace Google Drive:</label>
+                        <input type="url" placeholder="https://drive.google.com/file/d/..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <label>Roles:</label>
+                        <div>
+                            <label><input type="checkbox" value="supervisor"> Supervisor</label>
+                            <label><input type="checkbox" value="supermetre"> Supermetre</label>
+                            <label><input type="checkbox" value="cocina"> Cocina</label>
+                        </div>
+                    </div>
+                    <button type="button" onclick="this.parentElement.remove()" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px;">Eliminar</button>
+                </div>
+            `;
+            container.appendChild(linkItem);
+        }
+
+        document.getElementById('eventForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const driveLinks = [];
+            document.querySelectorAll('#driveLinksList > div').forEach(item => {
+                const name = item.querySelector('input[type="text"]').value.trim();
+                const url = item.querySelector('input[type="url"]').value.trim();
+                const roles = Array.from(item.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
+                
+                if (name && url && roles.length > 0) {
+                    let finalUrl = url;
+                    if (url.includes('drive.google.com/file/d/')) {
+                        const fileId = url.match(/\/file\/d\/([a-zA-Z0-9-_]+)/);
+                        if (fileId) finalUrl = `https://drive.google.com/file/d/${fileId[1]}/preview`;
+                    }
+                    driveLinks.push({ name, url: finalUrl, roles });
+                }
+            });
+            
+            if (driveLinks.length === 0) {
+                alert('Agrega al menos un documento');
+                return;
+            }
+            
+            const event = {
+                id: Date.now(),
+                center: document.getElementById('eventCenter').value,
+                date: document.getElementById('eventDate').value,
+                time: document.getElementById('eventTime').value,
+                guestCount: document.getElementById('guestCount').value,
+                observations: document.getElementById('observations').value,
+                documents: driveLinks
+            };
+
+            events.push(event);
+            saveEvents();
+            displayEvents();
+            
+            this.reset();
+            document.getElementById('driveLinksList').innerHTML = '';
+            driveLinksCount = 0;
+            
+            showMessage('Evento creado correctamente');
+        });
+
+        function displayEvents() {
+            const container = document.getElementById('eventsContainer');
+            const weekDates = document.getElementById('weekDates');
+            
+            if (events.length === 0) {
+                weekDates.textContent = 'No hay eventos';
+                container.innerHTML = '<div class="empty-state"><div class="emoji">📅</div><h3>No hay eventos</h3></div>';
+                return;
+            }
+            
+            weekDates.textContent = `${events.length} eventos disponibles`;
+            container.innerHTML = '';
+            
+            events.forEach(event => {
+                const card = document.createElement('div');
+                card.className = 'event-card';
+                card.innerHTML = `
+                    <div class="event-header">
+                        <div class="event-title">${event.center}</div>
+                        <div class="event-date">${formatDateShort(event.date)}</div>
+                    </div>
+                    <div style="margin-bottom: 25px; color: #666;">
+                        <p><strong>Hora:</strong> ${event.time}</p>
+                        <p><strong>Invitados:</strong> ${event.guestCount}</p>
+                        <p><strong>Documentos:</strong> ${event.documents.length}</p>
+                        ${event.observations ? `<p><strong>Notas:</strong> ${event.observations}</p>` : ''}
+                    </div>
+                    <div class="roles-container">
+                        <div class="role-button supervisor" onclick="showDocuments(${event.id}, 'supervisor')">
+                            <span class="role-emoji">👔</span>
+                            <div>Supervisor</div>
+                        </div>
+                        <div class="role-button supermetre" onclick="showDocuments(${event.id}, 'supermetre')">
+                            <span class="role-emoji">🎩</span>
+                            <div>Supermetre</div>
+                        </div>
+                        <div class="role-button cocina" onclick="showDocuments(${event.id}, 'cocina')">
+                            <span class="role-emoji">👨‍🍳</span>
+                            <div>Cocina</div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function showDocuments(eventId, role) {
+            const event = events.find(e => e.id === eventId);
+            const roleNames = {
+                supervisor: 'Supervisor 👔',
+                supermetre: 'Supermetre 🎩',
+                cocina: 'Cocina 👨‍🍳'
+            };
+            
+            const filteredDocs = event.documents.filter(doc => doc.roles.includes(role));
+            
+            document.getElementById('modalTitle').textContent = roleNames[role];
+            document.getElementById('modalSubtitle').textContent = `${event.center} - ${event.date} ${event.time}`;
+            
+            const modalDocs = document.getElementById('modalDocuments');
+            if (filteredDocs.length === 0) {
+                modalDocs.innerHTML = '<div class="empty-state"><div class="emoji">📄</div><h3>No hay documentos</h3></div>';
+            } else {
+                modalDocs.innerHTML = filteredDocs.map(doc => `
+                    <div class="document-item">
+                        <div>
+                            <div style="font-size: 2em; margin-bottom: 5px;">📄</div>
+                            <h4>${doc.name}</h4>
+                        </div>
+                        <button class="view-btn" onclick="window.open('${doc.url}', '_blank')">Ver</button>
+                    </div>
+                `).join('');
+            }
+            
+            document.getElementById('documentsModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('documentsModal').classList.remove('active');
+        }
+
+        function exportEvents() {
+            const dataStr = JSON.stringify(events, null, 2);
+            const blob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `banquetera-eventos-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            URL.revokeObjectURL(url);
+            showMessage('Eventos exportados');
+        }
+
+        function importEvents(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const importedEvents = JSON.parse(e.target.result);
+                    if (Array.isArray(importedEvents)) {
+                        events = importedEvents;
+                        saveEvents();
+                        displayEvents();
+                        showMessage('Eventos importados correctamente');
+                    }
+                } catch (error) {
+                    alert('Error al importar archivo');
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        function formatDateShort(dateString) {
+            try {
+                const date = new Date(dateString + 'T00:00:00');
+                return date.toLocaleDateString('es-ES', { month: 'short', day: 'numeric' });
+            } catch (e) {
+                return dateString;
+            }
+        }
+
+        function showMessage(message) {
+            const div = document.createElement('div');
+            div.className = 'success-message';
+            div.textContent = message;
+            const adminPanel = document.getElementById('adminPanel');
+            adminPanel.insertBefore(div, adminPanel.firstChild);
+            setTimeout(() => div.remove(), 3000);
+        }
+    </script>
+</body>
+</html>
