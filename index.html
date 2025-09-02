@@ -314,23 +314,45 @@
                 // URL para acceder a Google Sheets como CSV
                 const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
                 
+                console.log('URL de consulta:', csvUrl);
+                
                 const response = await fetch(csvUrl);
                 if (!response.ok) {
                     throw new Error(`Error HTTP: ${response.status}`);
                 }
                 
                 const csvText = await response.text();
+                console.log('Datos CSV recibidos:', csvText.substring(0, 500) + '...');
+                
                 const parsedData = parseCSV(csvText);
+                console.log('Datos parseados:', parsedData);
                 
                 events = processEventsData(parsedData);
+                console.log('Eventos procesados:', events);
                 
-                displayEvents();
-                updateSyncStatus('success', `${events.length} eventos cargados`);
+                if (events.length > 0) {
+                    displayEvents();
+                    updateSyncStatus('success', `${events.length} eventos cargados`);
+                } else {
+                    updateSyncStatus('error', 'No se encontraron eventos válidos');
+                    showEmptyState();
+                }
                 
             } catch (error) {
                 console.error('Error cargando desde Google Sheets:', error);
                 updateSyncStatus('error', 'Error de conexión');
                 showEmptyState();
+                
+                // Mostrar error detallado para diagnóstico
+                const container = document.getElementById('eventsContainer');
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="emoji">⚠️</div>
+                        <h3>Error de diagnóstico</h3>
+                        <p>Error: ${error.message}</p>
+                        <p>Revisa la consola del navegador (F12) para más detalles</p>
+                    </div>
+                `;
             }
         }
 
