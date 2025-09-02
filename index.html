@@ -563,21 +563,29 @@
             updateSyncStatus('syncing', 'Cargando...');
             
             try {
-                const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
-                    headers: {
-                        'X-Master-Key': '$2a$10$8sZ4K3sZ4K3sZ4K3sZ4K3u'  // Clave pública de solo lectura
-                    }
-                });
+                // Usar API pública sin autenticación para bins públicos
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`);
                 
                 if (response.ok) {
                     const data = await response.json();
-                    if (data.record && Array.isArray(data.record)) {
+                    // Verificar si es nuestro formato con events array
+                    if (data.record && data.record.events && Array.isArray(data.record.events)) {
+                        events = data.record.events;
+                        displayEvents();
+                        updateSyncStatus('success', 'Sincronizado');
+                    } else if (data.record && Array.isArray(data.record)) {
+                        // Formato alternativo donde el record es directamente un array
                         events = data.record;
                         displayEvents();
                         updateSyncStatus('success', 'Sincronizado');
+                    } else {
+                        // Bin vacío o formato desconocido
+                        events = [];
+                        showEmptyState();
+                        updateSyncStatus('success', 'Cargado');
                     }
                 } else {
-                    throw new Error('Error cargando datos');
+                    throw new Error(`Error HTTP: ${response.status}`);
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -591,22 +599,15 @@
             
             updateSyncStatus('syncing', 'Guardando...');
             
+            // Para guardar necesitas una API key válida
+            // Por ahora solo guardamos localmente
             try {
-                const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Master-Key': '$2a$10$8sZ4K3sZ4K3sZ4K3sZ4K3u'
-                    },
-                    body: JSON.stringify(events)
-                });
+                // Simular guardado exitoso
+                localStorage.setItem('banquetera_events_backup', JSON.stringify(events));
+                updateSyncStatus('success', 'Guardado local');
+                displayEvents();
                 
-                if (response.ok) {
-                    updateSyncStatus('success', 'Guardado');
-                    setTimeout(loadEventsFromBin, 1000);
-                } else {
-                    throw new Error('Error guardando');
-                }
+                showMessage('Evento guardado localmente. Para sincronización real necesitas configurar una API key de JSONBin válida.', 'warning');
             } catch (error) {
                 console.error('Error:', error);
                 updateSyncStatus('error', 'Error guardando');
