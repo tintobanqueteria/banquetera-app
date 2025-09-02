@@ -396,21 +396,32 @@
         });
 
         function loadEvents() {
-            // Eventos fijos en el código - se ven en todos los dispositivos
+            // Eventos con estructura para copiar desde Excel
             events = [
                 {
                     id: 1,
-                    center: "Campus Oriente",
-                    date: "2025-09-05",
-                    time: "19:00",
+                   Tipo de Evento:	"Matrimonio",
+Salón:	"Parque San Rafael",
+Fecha:	"05-09-2025",
+Gente Coctel:	273,
+Gente Comida:	273,
+Gente Fiesta	49,
+Encargado Oficina	Juan Carlos/Fernando,
+Super Metre	Pablo,
+Cocinero Jefe	Edgardo,
+Horario Citación Personal	12:30,
+Horario Término Evento	4:20,
+Hora Misa	17:30,
+Ceremonia	En el lugar,
+Socio a Cargo	Benja,
                     documents: [
                         {
-                            name: "Detalle evento",
+                            name: "Menú Principal",
                             url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
                             roles: ["supervisor", "supermetre", "cocina"]
                         },
                         {
-                            name: "Menu",
+                            name: "Lista de Invitados VIP",
                             url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
                             roles: ["supervisor", "supermetre"]
                         }
@@ -418,37 +429,204 @@
                 },
                 {
                     id: 2,
-                    center: "Parque San Rafael",
-                    date: "2025-09-05",
-                    time: "17:30",
+                    tipoEvento: "Evento Empresarial",
+                    salon: "Centro Eventos La Hacienda",
+                    fecha: "2024-12-18",
+                    genteCoctel: 200,
+                    genteComida: 180,
+                    genteFiesta: 150,
+                    encargadoOficina: "Luis Hernández",
+                    superMetre: "Patricia Vega",
+                    cocineroJefe: "Miguel Torres",
+                    horarioCitacion: "16:30",
+                    horarioTermino: "23:00",
+                    horaMisa: "-",
+                    ceremonia: "Salón Principal",
+                    socioACargo: "Carmen López",
                     documents: [
                         {
-                            name: "Parte de matrimonio",
-                            url: "https://drive.google.com/file/d/16vRLA-9FsB72mbgKLU20sN84nd6gpkKA/view?usp=sharing",
+                            name: "Menú Ejecutivo",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
                             roles: ["supervisor", "supermetre", "cocina"]
                         },
                         {
-                            name: "Menu",
-                            url: "https://drive.google.com/file/d/1wZH89Cxy9Fnl6hcvdz-54cXo89GLcSM2/view?usp=sharing",
-                            roles: ["supervisor", "supermetre", "cocina"]
+                            name: "Protocolo de Servicio",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre"]
                         }
                     ]
                 },
                 {
                     id: 3,
-                    center: "Parque San Rafael",
-                    date: "2025-09-06",
-                    time: "17:30",
+                    tipoEvento: "Matrimonio",
+                    salon: "Salón Los Rosales",
+                    fecha: "2024-12-20",
+                    genteCoctel: 180,
+                    genteComida: 170,
+                    genteFiesta: 160,
+                    encargadoOficina: "Sandra Moreno",
+                    superMetre: "Diego Castillo",
+                    cocineroJefe: "Isabel Reyes",
+                    horarioCitacion: "18:00",
+                    horarioTermino: "03:00",
+                    horaMisa: "19:00",
+                    ceremonia: "Jardín del Salón",
+                    socioACargo: "Francisco García",
                     documents: [
                         {
-                            name: "Parte de matrimonio",
-                            url: "https://drive.google.com/file/d/1qAD3AxX4BdEgk9A36pQD6q_HUXBWhfHV/view?usp=sharing",
+                            name: "Menú Buffet Internacional",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
                             roles: ["supervisor", "supermetre", "cocina"]
                         },
                         {
-                            name: "Menu",
-                            url: "https://drive.google.com/file/d/1mRevsle0kGEq9CIHloCqzbgNzYQckYCV/view?usp=sharing",
+                            name: "Disposición de Mesas",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre"]
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    tipoEvento: "Almuerzo Familiar",
+                    salon: "Salón Los Olivos",
+                    fecha: "2024-12-22",
+                    genteCoctel: 80,
+                    genteComida: 75,
+                    genteFiesta: 60,
+                    encargadoOficina: "Andrea Silva",
+                    superMetre: "Jorge Mendoza",
+                    cocineroJefe: "Rosa Jiménez",
+                    horarioCitacion: "10:00",
+                    horarioTermino: "16:00",
+                    horaMisa: "-",
+                    ceremonia: "Salón Principal",
+                    socioACargo: "Elena Torres",
+                    documents: [
+                        {
+                            name: "Menú Criollo",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
                             roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Recetas Tradicionales",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["cocina"]
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    tipoEvento: "Cena Navideña",
+                    salon: "Centro de Convenciones Metropolitan",
+                    fecha: "2024-12-24",
+                    genteCoctel: 300,
+                    genteComida: 280,
+                    genteFiesta: 250,
+                    encargadoOficina: "Mónica Vargas",
+                    superMetre: "Alejandro Díaz",
+                    cocineroJefe: "Carmen Fuentes",
+                    horarioCitacion: "17:30",
+                    horarioTermino: "01:00",
+                    horaMisa: "-",
+                    ceremonia: "Auditorio Principal",
+                    socioACargo: "Pedro Ramírez",
+                    documents: [
+                        {
+                            name: "Menú Navideño",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Cronograma del Evento",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre"]
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    tipoEvento: "Matrimonio",
+                    salon: "Hacienda Santa Rosa",
+                    fecha: "2024-12-28",
+                    genteCoctel: 150,
+                    genteComida: 140,
+                    genteFiesta: 120,
+                    encargadoOficina: "Claudia Herrera",
+                    superMetre: "Fernando López",
+                    cocineroJefe: "Gloria Martín",
+                    horarioCitacion: "15:00",
+                    horarioTermino: "24:00",
+                    horaMisa: "17:00",
+                    ceremonia: "Capilla de la Hacienda",
+                    socioACargo: "Mariana Soto",
+                    documents: [
+                        {
+                            name: "Menú de Recepción",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Plan de Contingencia Clima",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor"]
+                        }
+                    ]
+                },
+                {
+                    id: 7,
+                    tipoEvento: "Fiesta Año Nuevo",
+                    salon: "Salón de Eventos El Rosal",
+                    fecha: "2024-12-30",
+                    genteCoctel: 250,
+                    genteComida: 230,
+                    genteFiesta: 200,
+                    encargadoOficina: "Valeria Castro",
+                    superMetre: "Ricardo Peña",
+                    cocineroJefe: "Andrés Vásquez",
+                    horarioCitacion: "19:00",
+                    horarioTermino: "04:00",
+                    horaMisa: "-",
+                    ceremonia: "Salón Principal",
+                    socioACargo: "Daniela Rojas",
+                    documents: [
+                        {
+                            name: "Menú Fin de Año",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Instrucciones Brindis Medianoche",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre"]
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    tipoEvento: "Matrimonio",
+                    salon: "Club de Campo Las Condes",
+                    fecha: "2025-01-05",
+                    genteCoctel: 100,
+                    genteComida: 95,
+                    genteFiesta: 85,
+                    encargadoOficina: "Paola Núñez",
+                    superMetre: "Sebastián Flores",
+                    cocineroJefe: "Lorena Muñoz",
+                    horarioCitacion: "14:30",
+                    horarioTermino: "22:00",
+                    horaMisa: "16:30",
+                    ceremonia: "Jardín del Club",
+                    socioACargo: "Gabriel Miranda",
+                    documents: [
+                        {
+                            name: "Menú Degustación",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Especificaciones Montaje",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre"]
                         }
                     ]
                 }
@@ -598,14 +776,19 @@
                 card.className = 'event-card';
                 card.innerHTML = `
                     <div class="event-header">
-                        <div class="event-title">${event.center}</div>
-                        <div class="event-date">${formatDateShort(event.date)}</div>
+                        <div class="event-title">${event.tipoEvento}</div>
+                        <div class="event-date">${formatDateShort(event.fecha)}</div>
                     </div>
-                    <div style="margin-bottom: 25px; color: #666;">
-                        <p><strong>Hora:</strong> ${event.time}</p>
-                        <p><strong>Invitados:</strong> ${event.guestCount}</p>
-                        <p><strong>Documentos:</strong> ${event.documents.length}</p>
-                        ${event.observations ? `<p><strong>Notas:</strong> ${event.observations}</p>` : ''}
+                    <div style="margin-bottom: 25px; color: #666; font-size: 0.95em;">
+                        <p><strong>Salón:</strong> ${event.salon}</p>
+                        <p><strong>Gente Coctel:</strong> ${event.genteCoctel} | <strong>Comida:</strong> ${event.genteComida} | <strong>Fiesta:</strong> ${event.genteFiesta}</p>
+                        <p><strong>Encargado Oficina:</strong> ${event.encargadoOficina}</p>
+                        <p><strong>Super Metre:</strong> ${event.superMetre}</p>
+                        <p><strong>Cocinero Jefe:</strong> ${event.cocineroJefe}</p>
+                        <p><strong>Horario Citación:</strong> ${event.horarioCitacion} | <strong>Término:</strong> ${event.horarioTermino}</p>
+                        <p><strong>Hora Misa:</strong> ${event.horaMisa}</p>
+                        <p><strong>Ceremonia:</strong> ${event.ceremonia}</p>
+                        <p><strong>Socio a Cargo:</strong> ${event.socioACargo}</p>
                     </div>
                     <div class="roles-container">
                         <div class="role-button supervisor" onclick="showDocuments(${event.id}, 'supervisor')">
@@ -637,7 +820,7 @@
             const filteredDocs = event.documents.filter(doc => doc.roles.includes(role));
             
             document.getElementById('modalTitle').textContent = roleNames[role];
-            document.getElementById('modalSubtitle').textContent = `${event.center} - ${event.date} ${event.time}`;
+            document.getElementById('modalSubtitle').textContent = `${event.tipoEvento} - ${event.salon} - ${event.fecha}`;
             
             const modalDocs = document.getElementById('modalDocuments');
             if (filteredDocs.length === 0) {
