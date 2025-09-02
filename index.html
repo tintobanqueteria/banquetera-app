@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventos de la Semana - Banquetera Auto-Sync</title>
+    <title>Eventos de la Semana - Banquetera Final</title>
     <style>
         * {
             margin: 0;
@@ -39,34 +39,6 @@
             margin-bottom: 10px;
         }
 
-        .sync-status {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.8em;
-            color: #333;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-            cursor: pointer;
-        }
-
-        .sync-status.syncing {
-            background: rgba(255, 193, 7, 0.95);
-        }
-
-        .sync-status.error {
-            background: rgba(220, 53, 69, 0.95);
-            color: white;
-        }
-
-        .sync-status.success {
-            background: rgba(40, 167, 69, 0.95);
-            color: white;
-        }
-
         .admin-toggle {
             position: fixed;
             top: 20px;
@@ -80,6 +52,16 @@
             border: none;
             box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             z-index: 1000;
+        }
+
+        .admin-panel {
+            display: none;
+            background: #f8f9fa;
+            padding: 30px;
+        }
+
+        .admin-panel.active {
+            display: block;
         }
 
         .main-content {
@@ -250,32 +232,141 @@
             opacity: 0.5;
         }
 
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+
+        .password-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .password-modal.active { display: flex; }
+
+        .password-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid #28a745;
+        }
+
         @media (max-width: 768px) {
             .roles-container { grid-template-columns: 1fr; gap: 12px; }
-            .admin-toggle, .sync-status { position: static; margin-bottom: 15px; display: block; text-align: center; }
+            .admin-toggle { position: static; margin-bottom: 15px; display: block; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <div id="syncStatus" class="sync-status" onclick="syncNow()">
-        <span id="syncIcon">🔄</span>
-        <span id="syncText">Conectando a Google Sheets...</span>
+    <button class="admin-toggle" onclick="toggleAdmin()">Admin</button>
+
+    <!-- Modal contraseña -->
+    <div id="passwordModal" class="password-modal">
+        <div class="password-content">
+            <h3 style="color: #ff6b6b; margin-bottom: 15px;">Acceso Admin</h3>
+            <input type="password" id="passwordInput" placeholder="Contraseña" style="width: 100%; padding: 15px; margin: 20px 0; border: 2px solid #e9ecef; border-radius: 10px; text-align: center;">
+            <div>
+                <button class="btn" onclick="checkPassword()">Acceder</button>
+                <button class="btn" onclick="closePasswordModal()" style="background: #6c757d;">Cancelar</button>
+            </div>
+            <div id="passwordError" style="color: #dc3545; margin-top: 15px; display: none;">Contraseña incorrecta</div>
+        </div>
     </div>
 
     <div class="container">
+        <!-- Panel Admin -->
+        <div id="adminPanel" class="admin-panel">
+            <h2 style="color: #ff6b6b; margin-bottom: 25px;">Panel Administrativo</h2>
+
+            <form id="eventForm">
+                <div class="form-group">
+                    <label>Centro de Eventos</label>
+                    <input type="text" id="eventCenter" required>
+                </div>
+                <div class="form-group">
+                    <label>Fecha</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Hora</label>
+                    <input type="time" id="eventTime" value="19:00" required>
+                </div>
+                <div class="form-group">
+                    <label>Invitados</label>
+                    <input type="number" id="guestCount" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Observaciones</label>
+                    <textarea id="observations" rows="3"></textarea>
+                </div>
+                
+                <div style="background: #e3f2fd; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                    <h4>Documentos de Google Drive</h4>
+                    <div id="driveLinksList"></div>
+                    <button type="button" class="btn" onclick="addDriveLink()">Agregar Documento</button>
+                </div>
+
+                <button type="submit" class="btn">Crear Evento</button>
+            </form>
+        </div>
+
         <!-- Contenido principal -->
         <div class="header">
             <h1>Eventos de la Semana</h1>
-            <p>Datos sincronizados automáticamente desde Google Sheets</p>
-            <div style="font-size: 0.8em; opacity: 0.7; margin-top: 10px;">
-                Auto-sync con "Detalle Eventos"
-            </div>
+            <p>Selecciona tu evento y rol para ver los documentos</p>
         </div>
 
         <div class="main-content">
             <div class="week-info">
                 <h2>Eventos Disponibles</h2>
-                <div id="weekDates">Cargando desde Google Sheets...</div>
+                <div id="weekDates">Eventos locales</div>
             </div>
             <div id="eventsContainer" class="events-grid"></div>
         </div>
@@ -293,250 +384,391 @@
         </div>
     </div>
 
-    <!-- Modal ya no es necesario para documentos -->
     <script>
-        // Configuración del Google Sheets
-        const SHEET_ID = '1tXtpTAi-07DkV3mll1yGaOlLexnmP-dP1mOT0QV0WQA';
-        const SHEET_NAME = 'Detalle eventos';
-        
         let events = [];
+        let isAdmin = false;
+        let driveLinksCount = 0;
 
+        // Cargar eventos al iniciar
         document.addEventListener('DOMContentLoaded', function() {
-            loadEventsFromGoogleSheets();
-            // Actualizar cada 30 segundos
-            setInterval(loadEventsFromGoogleSheets, 30000);
+            loadEvents();
+            displayEvents();
         });
 
-        async function loadEventsFromGoogleSheets() {
-            updateSyncStatus('syncing', 'Cargando desde Google Sheets...');
+        function loadEvents() {
+            // Eventos con estructura para copiar desde Excel
+            events = [
+                {
+                    id: 1,
+                    tipoEvento: "Matrimonio",
+                    salon: "Centro de Eventos El Jardín",
+                    fecha: "2024-12-15",
+                    genteCoctel: 120,
+                    genteComida: 110,
+                    genteFiesta: 100,
+                    encargadoOficina: "María González",
+                    superMetre: "Carlos Ruiz",
+                    cocineroJefe: "Ana Morales",
+                    horarioCitacion: "17:00",
+                    horarioTermino: "02:00",
+                    horaMisa: "18:00",
+                    ceremonia: "Iglesia San Pedro",
+                    socioACargo: "Roberto Silva",
+                    documents: [
+                        {
+                            name: "Menú Principal",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Lista de Invitados VIP",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre"]
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    tipoEvento: "Evento Empresarial",
+                    salon: "Centro Eventos La Hacienda",
+                    fecha: "2024-12-18",
+                    genteCoctel: 200,
+                    genteComida: 180,
+                    genteFiesta: 150,
+                    encargadoOficina: "Luis Hernández",
+                    superMetre: "Patricia Vega",
+                    cocineroJefe: "Miguel Torres",
+                    horarioCitacion: "16:30",
+                    horarioTermino: "23:00",
+                    horaMisa: "-",
+                    ceremonia: "Salón Principal",
+                    socioACargo: "Carmen López",
+                    documents: [
+                        {
+                            name: "Menú Ejecutivo",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Protocolo de Servicio",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre"]
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    tipoEvento: "Matrimonio",
+                    salon: "Salón Los Rosales",
+                    fecha: "2024-12-20",
+                    genteCoctel: 180,
+                    genteComida: 170,
+                    genteFiesta: 160,
+                    encargadoOficina: "Sandra Moreno",
+                    superMetre: "Diego Castillo",
+                    cocineroJefe: "Isabel Reyes",
+                    horarioCitacion: "18:00",
+                    horarioTermino: "03:00",
+                    horaMisa: "19:00",
+                    ceremonia: "Jardín del Salón",
+                    socioACargo: "Francisco García",
+                    documents: [
+                        {
+                            name: "Menú Buffet Internacional",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Disposición de Mesas",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre"]
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    tipoEvento: "Almuerzo Familiar",
+                    salon: "Salón Los Olivos",
+                    fecha: "2024-12-22",
+                    genteCoctel: 80,
+                    genteComida: 75,
+                    genteFiesta: 60,
+                    encargadoOficina: "Andrea Silva",
+                    superMetre: "Jorge Mendoza",
+                    cocineroJefe: "Rosa Jiménez",
+                    horarioCitacion: "10:00",
+                    horarioTermino: "16:00",
+                    horaMisa: "-",
+                    ceremonia: "Salón Principal",
+                    socioACargo: "Elena Torres",
+                    documents: [
+                        {
+                            name: "Menú Criollo",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Recetas Tradicionales",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["cocina"]
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    tipoEvento: "Cena Navideña",
+                    salon: "Centro de Convenciones Metropolitan",
+                    fecha: "2024-12-24",
+                    genteCoctel: 300,
+                    genteComida: 280,
+                    genteFiesta: 250,
+                    encargadoOficina: "Mónica Vargas",
+                    superMetre: "Alejandro Díaz",
+                    cocineroJefe: "Carmen Fuentes",
+                    horarioCitacion: "17:30",
+                    horarioTermino: "01:00",
+                    horaMisa: "-",
+                    ceremonia: "Auditorio Principal",
+                    socioACargo: "Pedro Ramírez",
+                    documents: [
+                        {
+                            name: "Menú Navideño",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Cronograma del Evento",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre"]
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    tipoEvento: "Matrimonio",
+                    salon: "Hacienda Santa Rosa",
+                    fecha: "2024-12-28",
+                    genteCoctel: 150,
+                    genteComida: 140,
+                    genteFiesta: 120,
+                    encargadoOficina: "Claudia Herrera",
+                    superMetre: "Fernando López",
+                    cocineroJefe: "Gloria Martín",
+                    horarioCitacion: "15:00",
+                    horarioTermino: "24:00",
+                    horaMisa: "17:00",
+                    ceremonia: "Capilla de la Hacienda",
+                    socioACargo: "Mariana Soto",
+                    documents: [
+                        {
+                            name: "Menú de Recepción",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Plan de Contingencia Clima",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor"]
+                        }
+                    ]
+                },
+                {
+                    id: 7,
+                    tipoEvento: "Fiesta Año Nuevo",
+                    salon: "Salón de Eventos El Rosal",
+                    fecha: "2024-12-30",
+                    genteCoctel: 250,
+                    genteComida: 230,
+                    genteFiesta: 200,
+                    encargadoOficina: "Valeria Castro",
+                    superMetre: "Ricardo Peña",
+                    cocineroJefe: "Andrés Vásquez",
+                    horarioCitacion: "19:00",
+                    horarioTermino: "04:00",
+                    horaMisa: "-",
+                    ceremonia: "Salón Principal",
+                    socioACargo: "Daniela Rojas",
+                    documents: [
+                        {
+                            name: "Menú Fin de Año",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Instrucciones Brindis Medianoche",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre"]
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    tipoEvento: "Matrimonio",
+                    salon: "Club de Campo Las Condes",
+                    fecha: "2025-01-05",
+                    genteCoctel: 100,
+                    genteComida: 95,
+                    genteFiesta: 85,
+                    encargadoOficina: "Paola Núñez",
+                    superMetre: "Sebastián Flores",
+                    cocineroJefe: "Lorena Muñoz",
+                    horarioCitacion: "14:30",
+                    horarioTermino: "22:00",
+                    horaMisa: "16:30",
+                    ceremonia: "Jardín del Club",
+                    socioACargo: "Gabriel Miranda",
+                    documents: [
+                        {
+                            name: "Menú Degustación",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Especificaciones Montaje",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre"]
+                        }
+                    ]
+                }
+            ];
+        }
+
+        function saveEvents() {
+            localStorage.setItem('banquetera_events_final', JSON.stringify(events));
+        }
+
+        function toggleAdmin() {
+            if (!isAdmin) {
+                document.getElementById('passwordModal').classList.add('active');
+                document.getElementById('passwordInput').focus();
+            } else {
+                toggleAdminPanel();
+            }
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            if (password === 'Pagoda1234') {
+                isAdmin = true;
+                closePasswordModal();
+                toggleAdminPanel();
+            } else {
+                document.getElementById('passwordError').style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+            }
+        }
+
+        function closePasswordModal() {
+            document.getElementById('passwordModal').classList.remove('active');
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+        }
+
+        function toggleAdminPanel() {
+            const panel = document.getElementById('adminPanel');
+            const btn = document.querySelector('.admin-toggle');
             
-            try {
-                // URL para acceder a Google Sheets como CSV
-                const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
-                
-                console.log('URL de consulta:', csvUrl);
-                
-                const response = await fetch(csvUrl);
-                if (!response.ok) {
-                    throw new Error(`Error HTTP: ${response.status}`);
-                }
-                
-                const csvText = await response.text();
-                console.log('Datos CSV recibidos:', csvText.substring(0, 500) + '...');
-                
-                const parsedData = parseCSV(csvText);
-                console.log('Datos parseados:', parsedData);
-                
-                events = processEventsData(parsedData);
-                console.log('Eventos procesados:', events);
-                
-                if (events.length > 0) {
-                    displayEvents();
-                    updateSyncStatus('success', `${events.length} eventos cargados`);
-                } else {
-                    updateSyncStatus('error', 'No se encontraron eventos válidos');
-                    showEmptyState();
-                }
-                
-            } catch (error) {
-                console.error('Error cargando desde Google Sheets:', error);
-                updateSyncStatus('error', 'Error de conexión');
-                showEmptyState();
-                
-                // Mostrar error detallado para diagnóstico
-                const container = document.getElementById('eventsContainer');
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="emoji">⚠️</div>
-                        <h3>Error de diagnóstico</h3>
-                        <p>Error: ${error.message}</p>
-                        <p>Revisa la consola del navegador (F12) para más detalles</p>
+            if (panel.classList.contains('active')) {
+                panel.classList.remove('active');
+                btn.textContent = 'Admin';
+                btn.style.background = 'rgba(255, 255, 255, 0.9)';
+                btn.style.color = '#333';
+            } else {
+                panel.classList.add('active');
+                btn.textContent = 'Cerrar';
+                btn.style.background = 'rgba(220, 53, 69, 0.9)';
+                btn.style.color = 'white';
+                if (driveLinksCount === 0) addDriveLink();
+            }
+        }
+
+        function addDriveLink() {
+            driveLinksCount++;
+            const container = document.getElementById('driveLinksList');
+            const linkItem = document.createElement('div');
+            linkItem.innerHTML = `
+                <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                    <div style="margin-bottom: 10px;">
+                        <label>Nombre:</label>
+                        <input type="text" class="doc-name" placeholder="Ej: Menú Principal" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
                     </div>
-                `;
-            }
+                    <div style="margin-bottom: 10px;">
+                        <label>Enlace Google Drive:</label>
+                        <input type="url" class="doc-url" placeholder="https://drive.google.com/file/d/..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <label>Roles:</label>
+                        <div>
+                            <label><input type="checkbox" value="supervisor"> Supervisor</label>
+                            <label><input type="checkbox" value="supermetre"> Supermetre</label>
+                            <label><input type="checkbox" value="cocina"> Cocina</label>
+                        </div>
+                    </div>
+                    <button type="button" onclick="this.parentElement.remove()" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px;">Eliminar</button>
+                </div>
+            `;
+            container.appendChild(linkItem);
         }
 
-        function parseCSV(csvText) {
-            const lines = csvText.split('\n');
-            const result = [];
+        document.getElementById('eventForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i].trim();
-                if (line) {
-                    // Parsear CSV básico (maneja comillas)
-                    const row = [];
-                    let current = '';
-                    let inQuotes = false;
-                    
-                    for (let j = 0; j < line.length; j++) {
-                        const char = line[j];
-                        if (char === '"') {
-                            inQuotes = !inQuotes;
-                        } else if (char === ',' && !inQuotes) {
-                            row.push(current.trim());
-                            current = '';
-                        } else {
-                            current += char;
-                        }
+            const driveLinks = [];
+            const linkItems = document.querySelectorAll('#driveLinksList > div');
+            
+            linkItems.forEach(item => {
+                const name = item.querySelector('.doc-name').value.trim();
+                const url = item.querySelector('.doc-url').value.trim();
+                const roles = Array.from(item.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
+                
+                if (name && url && roles.length > 0) {
+                    let finalUrl = url;
+                    if (url.includes('drive.google.com/file/d/')) {
+                        const fileId = url.match(/\/file\/d\/([a-zA-Z0-9-_]+)/);
+                        if (fileId) finalUrl = `https://drive.google.com/file/d/${fileId[1]}/preview`;
                     }
-                    row.push(current.trim());
-                    result.push(row);
+                    driveLinks.push({ name, url: finalUrl, roles });
                 }
-            }
-            return result;
-        }
-
-        function processEventsData(data) {
-            const processedEvents = [];
+            });
             
-            // Buscar la fila con "Evento:" para encontrar los números de eventos
-            let eventHeaderRow = -1;
-            for (let i = 0; i < data.length; i++) {
-                if (data[i][0] && data[i][0].toLowerCase().includes('evento')) {
-                    eventHeaderRow = i;
-                    break;
-                }
+            if (driveLinks.length === 0) {
+                alert('Agrega al menos un documento');
+                return;
             }
             
-            if (eventHeaderRow === -1) return [];
-            
-            // Obtener los números de eventos (columnas B, C, D, E...)
-            const eventNumbers = data[eventHeaderRow].slice(1);
-            
-            // Mapeo de las filas de datos
-            const dataRowMapping = {
-                'Tipo de Evento:': 'tipoEvento',
-                'Salón:': 'salon', 
-                'Fecha:': 'fecha',
-                'Gente Coctel:': 'genteCoctel',
-                'Gente Comida:': 'genteComida',
-                'Gente Fiesta:': 'genteFiesta',
-                'Encargado Oficina:': 'encargadoOficina',
-                'Super Metre:': 'superMetre',
-                'Cocinero Jefe:': 'cocineroJefe',
-                'Horario Citación Personal:': 'horarioCitacion',
-                'Horario Término Evento:': 'horarioTermino',
-                'Hora Misa:': 'horaMisa',
-                'Ceremonia:': 'ceremonia',
-                'Socio a Cargo:': 'socioACargo'
+            const event = {
+                id: Date.now(),
+                center: document.getElementById('eventCenter').value,
+                date: document.getElementById('eventDate').value,
+                time: document.getElementById('eventTime').value,
+                guestCount: document.getElementById('guestCount').value,
+                observations: document.getElementById('observations').value,
+                documents: driveLinks
             };
-            
-            // Procesar cada columna de evento
-            for (let colIndex = 1; colIndex < eventNumbers.length + 1; colIndex++) {
-                const eventNumber = eventNumbers[colIndex - 1];
-                if (!eventNumber || eventNumber.trim() === '') continue;
-                
-                const event = {
-                    id: parseInt(eventNumber) || colIndex,
-                    // Aquí agregas los documentos manualmente para cada evento
-                    documents: getDocumentsForEvent(parseInt(eventNumber) || colIndex)
-                };
-                
-                // Buscar cada fila de datos
-                for (let rowIndex = eventHeaderRow + 1; rowIndex < data.length; rowIndex++) {
-                    const rowLabel = data[rowIndex][0];
-                    if (rowLabel && dataRowMapping[rowLabel]) {
-                        const value = data[rowIndex][colIndex] || '';
-                        const cleanValue = value.replace(/"/g, '').trim();
-                        
-                        if (dataRowMapping[rowLabel] === 'fecha' && cleanValue) {
-                            // Convertir fecha formato MM-DD-YYYY a YYYY-MM-DD
-                            const parts = cleanValue.split('-');
-                            if (parts.length === 3) {
-                                event[dataRowMapping[rowLabel]] = `${parts[2]}-${parts[0].padStart(2, '0')}-${parts[1].padStart(2, '0')}`;
-                            } else {
-                                event[dataRowMapping[rowLabel]] = cleanValue;
-                            }
-                        } else if (['genteCoctel', 'genteComida', 'genteFiesta'].includes(dataRowMapping[rowLabel])) {
-                            event[dataRowMapping[rowLabel]] = parseInt(cleanValue) || 0;
-                        } else {
-                            event[dataRowMapping[rowLabel]] = cleanValue;
-                        }
-                    }
-                }
-                
-                // Solo agregar eventos que tengan información básica
-                if (event.tipoEvento || event.salon) {
-                    processedEvents.push(event);
-                }
-            }
-            
-            return processedEvents;
-        }
 
-        // Función donde defines los documentos para cada evento
-        function getDocumentsForEvent(eventId) {
-            const documentsConfig = {
-                1: [ // Evento 1
-                    {
-                        name: "Menú Principal",
-                        url: "https://drive.google.com/file/d/TU_ENLACE_EVENTO_1_SUPERVISOR/preview",
-                        roles: ["supervisor", "supermetre", "cocina"]
-                    },
-                    {
-                        name: "Lista de Invitados",
-                        url: "https://drive.google.com/file/d/TU_ENLACE_EVENTO_1_SUPERVISOR_2/preview",
-                        roles: ["supervisor", "supermetre"]
-                    }
-                ],
-                2: [ // Evento 2
-                    {
-                        name: "Menú Especial",
-                        url: "https://drive.google.com/file/d/TU_ENLACE_EVENTO_2_SUPERVISOR/preview",
-                        roles: ["supervisor", "supermetre", "cocina"]
-                    },
-                    {
-                        name: "Protocolo Servicio",
-                        url: "https://drive.google.com/file/d/TU_ENLACE_EVENTO_2_COCINA/preview",
-                        roles: ["cocina"]
-                    }
-                ],
-                3: [ // Evento 3
-                    {
-                        name: "Menú Corporativo",
-                        url: "https://drive.google.com/file/d/TU_ENLACE_EVENTO_3/preview",
-                        roles: ["supervisor", "supermetre", "cocina"]
-                    }
-                ],
-                4: [ // Evento 4
-                    {
-                        name: "Menú de Boda",
-                        url: "https://drive.google.com/file/d/TU_ENLACE_EVENTO_4/preview",
-                        roles: ["supervisor", "supermetre", "cocina"]
-                    }
-                ]
-            };
+            events.push(event);
+            saveEvents();
+            displayEvents();
             
-            return documentsConfig[eventId] || [];
-        }
-
-        function updateSyncStatus(status, text) {
-            const statusEl = document.getElementById('syncStatus');
-            const iconEl = document.getElementById('syncIcon');
-            const textEl = document.getElementById('syncText');
+            // Limpiar formulario
+            this.reset();
+            document.getElementById('driveLinksList').innerHTML = '';
+            driveLinksCount = 0;
             
-            statusEl.classList.remove('syncing', 'error', 'success');
-            if (status !== 'default') statusEl.classList.add(status);
-            
-            const icons = { syncing: '🔄', success: '✅', error: '❌' };
-            if (iconEl) iconEl.textContent = icons[status] || '📱';
-            if (textEl) textEl.textContent = text;
-        }
-
-        function syncNow() {
-            loadEventsFromGoogleSheets();
-        }
+            showMessage('Evento creado correctamente');
+        });
 
         function displayEvents() {
             const container = document.getElementById('eventsContainer');
             const weekDates = document.getElementById('weekDates');
             
             if (events.length === 0) {
-                showEmptyState();
+                weekDates.textContent = 'No hay eventos';
+                container.innerHTML = '<div class="empty-state"><div class="emoji">📅</div><h3>No hay eventos</h3></div>';
                 return;
             }
             
-            weekDates.textContent = `${events.length} eventos sincronizados desde Google Sheets`;
+            weekDates.textContent = `${events.length} eventos disponibles`;
             container.innerHTML = '';
             
             events.forEach(event => {
@@ -544,19 +776,19 @@
                 card.className = 'event-card';
                 card.innerHTML = `
                     <div class="event-header">
-                        <div class="event-title">${event.tipoEvento || 'Evento'}</div>
-                        <div class="event-date">${formatDateShort(event.fecha || 'Sin fecha')}</div>
+                        <div class="event-title">${event.tipoEvento}</div>
+                        <div class="event-date">${formatDateShort(event.fecha)}</div>
                     </div>
-                    <div style="margin-bottom: 25px; color: #666; font-size: 0.95em; line-height: 1.6;">
-                        <p><strong>Salón:</strong> ${event.salon || 'No especificado'}</p>
-                        <p><strong>Gente Coctel:</strong> ${event.genteCoctel || 0} | <strong>Comida:</strong> ${event.genteComida || 0} | <strong>Fiesta:</strong> ${event.genteFiesta || 0}</p>
-                        <p><strong>Encargado Oficina:</strong> ${event.encargadoOficina || 'No asignado'}</p>
-                        <p><strong>Super Metre:</strong> ${event.superMetre || 'No asignado'}</p>
-                        <p><strong>Cocinero Jefe:</strong> ${event.cocineroJefe || 'No asignado'}</p>
-                        <p><strong>Horario Citación:</strong> ${event.horarioCitacion || 'No especificado'} | <strong>Término:</strong> ${event.horarioTermino || 'No especificado'}</p>
-                        <p><strong>Hora Misa:</strong> ${event.horaMisa || 'No especificado'}</p>
-                        <p><strong>Ceremonia:</strong> ${event.ceremonia || 'No especificado'}</p>
-                        <p><strong>Socio a Cargo:</strong> ${event.socioACargo || 'No asignado'}</p>
+                    <div style="margin-bottom: 25px; color: #666; font-size: 0.95em;">
+                        <p><strong>Salón:</strong> ${event.salon}</p>
+                        <p><strong>Gente Coctel:</strong> ${event.genteCoctel} | <strong>Comida:</strong> ${event.genteComida} | <strong>Fiesta:</strong> ${event.genteFiesta}</p>
+                        <p><strong>Encargado Oficina:</strong> ${event.encargadoOficina}</p>
+                        <p><strong>Super Metre:</strong> ${event.superMetre}</p>
+                        <p><strong>Cocinero Jefe:</strong> ${event.cocineroJefe}</p>
+                        <p><strong>Horario Citación:</strong> ${event.horarioCitacion} | <strong>Término:</strong> ${event.horarioTermino}</p>
+                        <p><strong>Hora Misa:</strong> ${event.horaMisa}</p>
+                        <p><strong>Ceremonia:</strong> ${event.ceremonia}</p>
+                        <p><strong>Socio a Cargo:</strong> ${event.socioACargo}</p>
                     </div>
                     <div class="roles-container">
                         <div class="role-button supervisor" onclick="showDocuments(${event.id}, 'supervisor')">
@@ -577,20 +809,6 @@
             });
         }
 
-        function showEmptyState() {
-            const container = document.getElementById('eventsContainer');
-            const weekDates = document.getElementById('weekDates');
-            
-            weekDates.textContent = 'No hay eventos disponibles';
-            container.innerHTML = `
-                <div class="empty-state">
-                    <div class="emoji">📊</div>
-                    <h3>No se pudieron cargar eventos</h3>
-                    <p>Verificando conexión con Google Sheets...</p>
-                </div>
-            `;
-        }
-
         function showDocuments(eventId, role) {
             const event = events.find(e => e.id === eventId);
             const roleNames = {
@@ -602,11 +820,11 @@
             const filteredDocs = event.documents.filter(doc => doc.roles.includes(role));
             
             document.getElementById('modalTitle').textContent = roleNames[role];
-            document.getElementById('modalSubtitle').textContent = `${event.tipoEvento || 'Evento'} - ${event.salon || 'Sin salón'} - ${event.fecha || 'Sin fecha'}`;
+            document.getElementById('modalSubtitle').textContent = `${event.tipoEvento} - ${event.salon} - ${event.fecha}`;
             
             const modalDocs = document.getElementById('modalDocuments');
             if (filteredDocs.length === 0) {
-                modalDocs.innerHTML = '<div class="empty-state"><div class="emoji">📄</div><h3>No hay documentos disponibles</h3><p>Los documentos se configuran en el código</p></div>';
+                modalDocs.innerHTML = '<div class="empty-state"><div class="emoji">📄</div><h3>No hay documentos</h3></div>';
             } else {
                 modalDocs.innerHTML = filteredDocs.map(doc => `
                     <div class="document-item">
@@ -633,6 +851,15 @@
             } catch (e) {
                 return dateString;
             }
+        }
+
+        function showMessage(message) {
+            const div = document.createElement('div');
+            div.className = 'success-message';
+            div.textContent = message;
+            const adminPanel = document.getElementById('adminPanel');
+            adminPanel.insertBefore(div, adminPanel.firstChild);
+            setTimeout(() => div.remove(), 3000);
         }
     </script>
 </body>
