@@ -396,236 +396,120 @@
         });
 
         function loadEvents() {
-            // Eventos con estructura para copiar desde Excel
+            // Eventos basados en la hoja "Detalle Eventos" de Google Sheets
             events = [
                 {
                     id: 1,
-                   Tipo de Evento:	"Matrimonio",
-Salón:	"Parque San Rafael",
-Fecha:	"05-09-2025",
-Gente Coctel:	273,
-Gente Comida:	273,
-Gente Fiesta	49,
-Encargado Oficina	Juan Carlos/Fernando,
-Super Metre	Pablo,
-Cocinero Jefe	Edgardo,
-Horario Citación Personal	12:30,
-Horario Término Evento	4:20,
-Hora Misa	17:30,
-Ceremonia	En el lugar,
-Socio a Cargo	Benja,
+                    tipoEvento: "Matrimonio",
+                    salon: "Parque San Rafael",
+                    fecha: "2025-09-05",
+                    genteCoctel: 273,
+                    genteComida: 273,
+                    genteFiesta: 49,
+                    encargadoOficina: "Juan Carlos/Fernando",
+                    superMetre: "Pablo",
+                    cocineroJefe: "Edgardo",
+                    horarioCitacion: "12:30",
+                    horarioTermino: "4:20",
+                    horaMisa: "17:30",
+                    ceremonia: "En el lugar",
+                    socioACargo: "Benia",
                     documents: [
                         {
-                            name: "Menú Principal",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            name: "Parte de matrimonio",
+                            url: "https://drive.google.com/file/d/16vRLA-9FsB72mbgKLU20sN84nd6gpkKA/view?usp=sharing",
                             roles: ["supervisor", "supermetre", "cocina"]
                         },
                         {
-                            name: "Lista de Invitados VIP",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre"]
+                            name: "Menu oficial",
+                            url: "https://drive.google.com/file/d/1wZH89Cxy9Fnl6hcvdz-54cXo89GLcSM2/view?usp=sharing",
+                            roles: ["supervisor", "supermetre", "cocina"]
                         }
                     ]
                 },
                 {
                     id: 2,
-                    tipoEvento: "Evento Empresarial",
-                    salon: "Centro Eventos La Hacienda",
-                    fecha: "2024-12-18",
-                    genteCoctel: 200,
-                    genteComida: 180,
-                    genteFiesta: 150,
-                    encargadoOficina: "Luis Hernández",
-                    superMetre: "Patricia Vega",
-                    cocineroJefe: "Miguel Torres",
-                    horarioCitacion: "16:30",
-                    horarioTermino: "23:00",
-                    horaMisa: "-",
-                    ceremonia: "Salón Principal",
-                    socioACargo: "Carmen López",
+                    tipoEvento: "Matrimonio",
+                    salon: "Parque San Rafael",
+                    fecha: "2025-09-06",
+                    genteCoctel: 276,
+                    genteComida: 276,
+                    genteFiesta: 8,
+                    encargadoOficina: "Juan Carlos/Dolores",
+                    superMetre: "Tuga",
+                    cocineroJefe: "Horte",
+                    horarioCitacion: "12:30",
+                    horarioTermino: "4:20",
+                    horaMisa: "17:30",
+                    ceremonia: "En el lugar",
+                    socioACargo: "Benia",
                     documents: [
                         {
-                            name: "Menú Ejecutivo",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            name: "Parte matrimonio",
+                            url: "https://drive.google.com/file/d/1qAD3AxX4BdEgk9A36pQD6q_HUXBWhfHV/view?usp=sharing",
                             roles: ["supervisor", "supermetre", "cocina"]
                         },
                         {
-                            name: "Protocolo de Servicio",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre"]
+                            name: "Menu Oficial",
+                            url: "https://drive.google.com/file/d/1mRevsle0kGEq9CIHloCqzbgNzYQckYCV/view?usp=sharing",
+                            roles: ["supervisor", "supermetre", "cocina"]
                         }
                     ]
                 },
                 {
                     id: 3,
-                    tipoEvento: "Matrimonio",
-                    salon: "Salón Los Rosales",
-                    fecha: "2024-12-20",
-                    genteCoctel: 180,
-                    genteComida: 170,
-                    genteFiesta: 160,
-                    encargadoOficina: "Sandra Moreno",
-                    superMetre: "Diego Castillo",
-                    cocineroJefe: "Isabel Reyes",
-                    horarioCitacion: "18:00",
-                    horarioTermino: "03:00",
-                    horaMisa: "19:00",
-                    ceremonia: "Jardín del Salón",
-                    socioACargo: "Francisco García",
+                    tipoEvento: "Corporativo",
+                    salon: "Endeavor",
+                    fecha: "2025-09-03",
+                    genteCoctel: 250,
+                    genteComida: 0,
+                    genteFiesta: 0,
+                    encargadoOficina: "Nacho",
+                    superMetre: "Pablo",
+                    cocineroJefe: "Edgardo",
+                    horarioCitacion: "9:00/12:00",
+                    horarioTermino: "21:00",
+                    horaMisa: "15:00",
+                    ceremonia: "No hay ceremonia",
+                    socioACargo: "Nacho",
                     documents: [
                         {
-                            name: "Menú Buffet Internacional",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            name: "Menú Corporativo",
+                            url: "https://drive.google.com/file/d/TU_ENLACE_5/preview",
                             roles: ["supervisor", "supermetre", "cocina"]
                         },
                         {
-                            name: "Disposición de Mesas",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            name: "Cronograma del Evento",
+                            url: "https://drive.google.com/file/d/TU_ENLACE_6/preview",
                             roles: ["supervisor", "supermetre"]
                         }
                     ]
                 },
                 {
                     id: 4,
-                    tipoEvento: "Almuerzo Familiar",
-                    salon: "Salón Los Olivos",
-                    fecha: "2024-12-22",
-                    genteCoctel: 80,
-                    genteComida: 75,
-                    genteFiesta: 60,
-                    encargadoOficina: "Andrea Silva",
-                    superMetre: "Jorge Mendoza",
-                    cocineroJefe: "Rosa Jiménez",
-                    horarioCitacion: "10:00",
-                    horarioTermino: "16:00",
-                    horaMisa: "-",
-                    ceremonia: "Salón Principal",
-                    socioACargo: "Elena Torres",
+                    tipoEvento: "Corporativo",
+                    salon: "FIUC",
+                    fecha: "2025-09-05",
+                    genteCoctel: 310,
+                    genteComida: 310,
+                    genteFiesta: 0,
+                    encargadoOficina: "Cata F",
+                    superMetre: "Angie",
+                    cocineroJefe: "Estefí y Jose",
+                    horarioCitacion: "13:00",
+                    horarioTermino: "2:00",
+                    horaMisa: "19:00",
+                    ceremonia: "No hay ceremonia",
+                    socioACargo: "Nacho",
                     documents: [
                         {
-                            name: "Menú Criollo",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            name: "Menú de Boda",
+                            url: "https://drive.google.com/file/d/TU_ENLACE_7/preview",
                             roles: ["supervisor", "supermetre", "cocina"]
                         },
                         {
-                            name: "Recetas Tradicionales",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["cocina"]
-                        }
-                    ]
-                },
-                {
-                    id: 5,
-                    tipoEvento: "Cena Navideña",
-                    salon: "Centro de Convenciones Metropolitan",
-                    fecha: "2024-12-24",
-                    genteCoctel: 300,
-                    genteComida: 280,
-                    genteFiesta: 250,
-                    encargadoOficina: "Mónica Vargas",
-                    superMetre: "Alejandro Díaz",
-                    cocineroJefe: "Carmen Fuentes",
-                    horarioCitacion: "17:30",
-                    horarioTermino: "01:00",
-                    horaMisa: "-",
-                    ceremonia: "Auditorio Principal",
-                    socioACargo: "Pedro Ramírez",
-                    documents: [
-                        {
-                            name: "Menú Navideño",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre", "cocina"]
-                        },
-                        {
-                            name: "Cronograma del Evento",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre"]
-                        }
-                    ]
-                },
-                {
-                    id: 6,
-                    tipoEvento: "Matrimonio",
-                    salon: "Hacienda Santa Rosa",
-                    fecha: "2024-12-28",
-                    genteCoctel: 150,
-                    genteComida: 140,
-                    genteFiesta: 120,
-                    encargadoOficina: "Claudia Herrera",
-                    superMetre: "Fernando López",
-                    cocineroJefe: "Gloria Martín",
-                    horarioCitacion: "15:00",
-                    horarioTermino: "24:00",
-                    horaMisa: "17:00",
-                    ceremonia: "Capilla de la Hacienda",
-                    socioACargo: "Mariana Soto",
-                    documents: [
-                        {
-                            name: "Menú de Recepción",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre", "cocina"]
-                        },
-                        {
-                            name: "Plan de Contingencia Clima",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor"]
-                        }
-                    ]
-                },
-                {
-                    id: 7,
-                    tipoEvento: "Fiesta Año Nuevo",
-                    salon: "Salón de Eventos El Rosal",
-                    fecha: "2024-12-30",
-                    genteCoctel: 250,
-                    genteComida: 230,
-                    genteFiesta: 200,
-                    encargadoOficina: "Valeria Castro",
-                    superMetre: "Ricardo Peña",
-                    cocineroJefe: "Andrés Vásquez",
-                    horarioCitacion: "19:00",
-                    horarioTermino: "04:00",
-                    horaMisa: "-",
-                    ceremonia: "Salón Principal",
-                    socioACargo: "Daniela Rojas",
-                    documents: [
-                        {
-                            name: "Menú Fin de Año",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre", "cocina"]
-                        },
-                        {
-                            name: "Instrucciones Brindis Medianoche",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre"]
-                        }
-                    ]
-                },
-                {
-                    id: 8,
-                    tipoEvento: "Matrimonio",
-                    salon: "Club de Campo Las Condes",
-                    fecha: "2025-01-05",
-                    genteCoctel: 100,
-                    genteComida: 95,
-                    genteFiesta: 85,
-                    encargadoOficina: "Paola Núñez",
-                    superMetre: "Sebastián Flores",
-                    cocineroJefe: "Lorena Muñoz",
-                    horarioCitacion: "14:30",
-                    horarioTermino: "22:00",
-                    horaMisa: "16:30",
-                    ceremonia: "Jardín del Club",
-                    socioACargo: "Gabriel Miranda",
-                    documents: [
-                        {
-                            name: "Menú Degustación",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre", "cocina"]
-                        },
-                        {
-                            name: "Especificaciones Montaje",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            name: "Disposición de Mesas",
+                            url: "https://drive.google.com/file/d/TU_ENLACE_8/preview",
                             roles: ["supervisor", "supermetre"]
                         }
                     ]
