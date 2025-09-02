@@ -396,26 +396,63 @@
         });
 
         function loadEvents() {
-            const saved = localStorage.getItem('banquetera_events_final');
-            if (saved) {
-                events = JSON.parse(saved);
-            } else {
-                // Evento de ejemplo
-                events = [{
+            // Eventos fijos en el código - se ven en todos los dispositivos
+            events = [
+                {
                     id: 1,
-                    center: "Centro de Eventos El Jardín",
-                    date: "2024-12-15",
+                    center: "Campus Oriente",
+                    date: "2025-09-05",
                     time: "19:00",
-                    guestCount: 120,
-                    observations: "Evento de ejemplo",
-                    documents: [{
-                        name: "Menú Principal",
-                        url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                        roles: ["supervisor", "supermetre", "cocina"]
-                    }]
-                }];
-                saveEvents();
-            }
+                    documents: [
+                        {
+                            name: "Detalle evento",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Menu",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["supervisor", "supermetre"]
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    center: "Parque San Rafael",
+                    date: "2025-09-05",
+                    time: "17:30",
+                    documents: [
+                        {
+                            name: "Parte de matrimonio",
+                            url: "https://drive.google.com/file/d/16vRLA-9FsB72mbgKLU20sN84nd6gpkKA/view?usp=sharing",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Menu",
+                            url: "https://drive.google.com/file/d/1wZH89Cxy9Fnl6hcvdz-54cXo89GLcSM2/view?usp=sharing",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    center: "Parque San Rafael",
+                    date: "2025-09-06",
+                    time: "17:30",
+                    documents: [
+                        {
+                            name: "Parte de matrimonio",
+                            url: "https://drive.google.com/file/d/1qAD3AxX4BdEgk9A36pQD6q_HUXBWhfHV/view?usp=sharing",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        },
+                        {
+                            name: "Menu",
+                            url: "https://drive.google.com/file/d/1mRevsle0kGEq9CIHloCqzbgNzYQckYCV/view?usp=sharing",
+                            roles: ["supervisor", "supermetre", "cocina"]
+                        }
+                    ]
+                }
+            ];
         }
 
         function saveEvents() {
