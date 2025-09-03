@@ -420,20 +420,11 @@
                 },
                 {
                     id: 2,
-                    TipodeEvento:	"Matrimonio",
-                    Salón:	"Parque San Rafael",
-                    Fecha:	"2025-09-05",
-                    GenteCoctel:	273,
-                    GenteComida:	273,
-                    GenteFiesta:	49,
-                    EncargadoOficina:	"Juan Carlos/Fernando",
-                    SuperMetre:	"Pablo",
-                    CocineroJefe:	"Edgardo",
-                    HorarioCitaciónPersonal:	"12:30",
-                    HorarioTérminoEvento:	"04:20",
-                    HoraMisa:	"17:30",
-                    Ceremonia:	"En el lugar";
-                    SocioaCargo:	"Benja",
+                    center: "Centro Eventos La Hacienda",
+                    date: "2024-12-18",
+                    time: "18:30",
+                    guestCount: 200,
+                    observations: "Evento empresarial, cena de gala",
                     documents: [
                         {
                             name: "Menú Ejecutivo",
@@ -752,7 +743,7 @@
             const filteredDocs = event.documents.filter(doc => doc.roles.includes(role));
             
             document.getElementById('modalTitle').textContent = roleNames[role];
-            document.getElementById('modalSubtitle').textContent = `${event.center} - ${event.date} ${event.time}`;
+            document.getElementById('modalSubtitle').textContent = `${event.tipoEvento} - ${event.salon} - ${event.fecha}`;
             
             const modalDocs = document.getElementById('modalDocuments');
             if (filteredDocs.length === 0) {
