@@ -84,7 +84,7 @@
 
         .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 25px;
         }
 
@@ -114,7 +114,7 @@
 
         .event-title {
             color: #ff6b6b;
-            font-size: 1.6em;
+            font-size: 1.4em;
             font-weight: bold;
         }
 
@@ -125,6 +125,43 @@
             border-radius: 20px;
             font-size: 0.9em;
             font-weight: bold;
+        }
+
+        .event-details {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .event-details h4 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            font-size: 0.9em;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .detail-value {
+            color: #6c757d;
+            text-align: right;
         }
 
         .roles-container {
@@ -257,12 +294,19 @@
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #e9ecef;
             border-radius: 10px;
             font-size: 1em;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
         .password-modal {
@@ -301,6 +345,9 @@
         @media (max-width: 768px) {
             .roles-container { grid-template-columns: 1fr; gap: 12px; }
             .admin-toggle { position: static; margin-bottom: 15px; display: block; text-align: center; }
+            .form-row { grid-template-columns: 1fr; }
+            .events-grid { grid-template-columns: 1fr; }
+            .detail-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -326,25 +373,81 @@
             <h2 style="color: #ff6b6b; margin-bottom: 25px;">Panel Administrativo</h2>
 
             <form id="eventForm">
-                <div class="form-group">
-                    <label>Centro de Eventos</label>
-                    <input type="text" id="eventCenter" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tipo de Evento *</label>
+                        <input type="text" id="tipoEvento" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Salón *</label>
+                        <input type="text" id="salon" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Fecha</label>
-                    <input type="date" id="eventDate" required>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha *</label>
+                        <input type="date" id="fecha" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Hora Misa</label>
+                        <input type="time" id="horaMisa">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Hora</label>
-                    <input type="time" id="eventTime" value="19:00" required>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Gente Coctel</label>
+                        <input type="number" id="genteCoctel" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Gente Comida</label>
+                        <input type="number" id="genteComida" min="0">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Invitados</label>
-                    <input type="number" id="guestCount" min="1" required>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Gente Fiesta</label>
+                        <input type="number" id="genteFiesta" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Ceremonia</label>
+                        <input type="text" id="ceremonia" placeholder="En el lugar, Iglesia, etc.">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Observaciones</label>
-                    <textarea id="observations" rows="3"></textarea>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Encargado Oficina</label>
+                        <input type="text" id="encargadoOficina">
+                    </div>
+                    <div class="form-group">
+                        <label>Super Metre</label>
+                        <input type="text" id="superMetre">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Cocinero Jefe</label>
+                        <input type="text" id="cocineroJefe">
+                    </div>
+                    <div class="form-group">
+                        <label>Socio a Cargo</label>
+                        <input type="text" id="socioACargo">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Horario Citación Personal</label>
+                        <input type="time" id="horarioCitacion">
+                    </div>
+                    <div class="form-group">
+                        <label>Horario Término Evento</label>
+                        <input type="time" id="horarioTermino">
+                    </div>
                 </div>
                 
                 <div style="background: #e3f2fd; padding: 20px; border-radius: 15px; margin: 20px 0;">
@@ -396,24 +499,24 @@
         });
 
         function loadEvents() {
-            // Eventos fijos en el código - se ven en todos los dispositivos
-            events = [
+            // Eventos ejemplo con todos los campos obligatorios
+            const defaultEvents = [
                 {
                     id: 1,
-                    TipodeEvento:	"Matrimonio",
-                    Salón:	"Parque San Rafael",
-                    Fecha:	"2025-09-05",
-                    GenteCoctel:	273,
-                    GenteComida:	273,
-                    GenteFiesta:	49,
-                    EncargadoOficina:	"Juan Carlos/Fernando",
-                    SuperMetre:	"Pablo",
-                    CocineroJefe:	"Edgardo",
-                    HorarioCitaciónPersonal:	"12:30",
-                    HorarioTérminoEvento:	"04:20",
-                    HoraMisa:	"17:30",
-                    Ceremonia:	"En el lugar",
-                    SocioaCargo:	"Benja",
+                    tipoEvento: "Matrimonio",
+                    salon: "Parque San Rafael",
+                    fecha: "2025-09-05",
+                    genteCoctel: 273,
+                    genteComida: 273,
+                    genteFiesta: 49,
+                    encargadoOficina: "Juan Carlos/Fernando",
+                    superMetre: "Pablo",
+                    cocineroJefe: "Edgardo",
+                    horarioCitacion: "12:30",
+                    horarioTermino: "04:20",
+                    horaMisa: "17:30",
+                    ceremonia: "En el lugar",
+                    socioACargo: "Benja",
                     documents: [
                         {
                             name: "Menú Principal",
@@ -429,11 +532,20 @@
                 },
                 {
                     id: 2,
-                    center: "Centro Eventos La Hacienda",
-                    date: "2024-12-18",
-                    time: "18:30",
-                    guestCount: 200,
-                    observations: "Evento empresarial, cena de gala",
+                    tipoEvento: "Evento Corporativo",
+                    salon: "Centro de Convenciones Plaza Norte",
+                    fecha: "2025-09-08",
+                    genteCoctel: 150,
+                    genteComida: 150,
+                    genteFiesta: 80,
+                    encargadoOficina: "María González/Carlos López",
+                    superMetre: "Roberto",
+                    cocineroJefe: "Chef Andrea",
+                    horarioCitacion: "14:00",
+                    horarioTermino: "23:30",
+                    horaMisa: "",
+                    ceremonia: "No aplica",
+                    socioACargo: "Patricia",
                     documents: [
                         {
                             name: "Menú Ejecutivo",
@@ -441,119 +553,33 @@
                             roles: ["supervisor", "supermetre", "cocina"]
                         },
                         {
-                            name: "Protocolo de Servicio",
+                            name: "Protocolo de Servicio VIP",
                             url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
                             roles: ["supervisor", "supermetre"]
-                        }
-                    ]
-                },
-                {
-                    id: 3,
-                    center: "Matrimonio Rodríguez-López",
-                    date: "2024-12-20",
-                    time: "20:00",
-                    guestCount: 180,
-                    observations: "Boda nocturna, buffet internacional",
-                    documents: [
-                        {
-                            name: "Menú Buffet Internacional",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre", "cocina"]
                         },
                         {
-                            name: "Disposición de Mesas",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre"]
-                        }
-                    ]
-                },
-                {
-                    id: 4,
-                    center: "Salón Los Olivos",
-                    date: "2024-12-22",
-                    time: "12:00",
-                    guestCount: 80,
-                    observations: "Almuerzo familiar, menú criollo",
-                    documents: [
-                        {
-                            name: "Menú Criollo",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre", "cocina"]
-                        },
-                        {
-                            name: "Recetas Tradicionales",
+                            name: "Recetas Especiales",
                             url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
                             roles: ["cocina"]
                         }
                     ]
                 },
                 {
-                    id: 5,
-                    center: "Centro de Convenciones Metropolitan",
-                    date: "2024-12-24",
-                    time: "19:30",
-                    guestCount: 300,
-                    observations: "Cena navideña corporativa",
-                    documents: [
-                        {
-                            name: "Menú Navideño",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre", "cocina"]
-                        },
-                        {
-                            name: "Cronograma del Evento",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre"]
-                        }
-                    ]
-                },
-                {
-                    id: 6,
-                    center: "Matrimonio Torres-Mendoza",
-                    date: "2024-12-28",
-                    time: "17:00",
-                    guestCount: 150,
-                    observations: "Ceremonia religiosa, recepción al aire libre",
-                    documents: [
-                        {
-                            name: "Menú de Recepción",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre", "cocina"]
-                        },
-                        {
-                            name: "Plan de Contingencia Clima",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor"]
-                        }
-                    ]
-                },
-                {
-                    id: 7,
-                    center: "Salón de Eventos El Rosal",
-                    date: "2024-12-30",
-                    time: "21:00",
-                    guestCount: 250,
-                    observations: "Fiesta de Año Nuevo, cena y baile",
-                    documents: [
-                        {
-                            name: "Menú Fin de Año",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre", "cocina"]
-                        },
-                        {
-                            name: "Instrucciones Brindis Medianoche",
-                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
-                            roles: ["supervisor", "supermetre"]
-                        }
-                    ]
-                },
-                {
-                    id: 8,
-                    center: "Matrimonio Vargas-Jiménez",
-                    date: "2025-01-05",
-                    time: "16:30",
-                    guestCount: 100,
-                    observations: "Boda íntima, almuerzo elegante",
+                    id: 3,
+                    tipoEvento: "Cumpleaños 50 Años",
+                    salon: "Salón Los Jardines",
+                    fecha: "2025-09-12",
+                    genteCoctel: 80,
+                    genteComida: 80,
+                    genteFiesta: 60,
+                    encargadoOficina: "Diego Morales",
+                    superMetre: "Francisca",
+                    cocineroJefe: "Chef Manuel",
+                    horarioCitacion: "16:00",
+                    horarioTermino: "02:00",
+                    horaMisa: "",
+                    ceremonia: "Brindis especial",
+                    socioACargo: "Alejandro",
                     documents: [
                         {
                             name: "Menú Degustación",
@@ -561,17 +587,57 @@
                             roles: ["supervisor", "supermetre", "cocina"]
                         },
                         {
-                            name: "Especificaciones Montaje",
+                            name: "Disposición de Mesas",
                             url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
                             roles: ["supervisor", "supermetre"]
+                        },
+                        {
+                            name: "Preparación Torta Especial",
+                            url: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/preview",
+                            roles: ["cocina"]
                         }
                     ]
                 }
             ];
+
+            // Cargar eventos guardados y combinar con los por defecto, FILTRAR eventos inválidos
+            try {
+                const savedEvents = JSON.parse(localStorage.getItem('banquetera_events_final') || '[]');
+                // Filtrar eventos que tengan al menos tipo de evento y salón válidos
+                const validSavedEvents = savedEvents.filter(event => 
+                    event && 
+                    event.tipoEvento && 
+                    event.salon && 
+                    event.tipoEvento.trim() !== '' && 
+                    event.salon.trim() !== '' &&
+                    event.tipoEvento !== 'undefined' &&
+                    event.salon !== 'undefined'
+                );
+                events = [...defaultEvents, ...validSavedEvents];
+            } catch (error) {
+                console.error('Error loading saved events:', error);
+                events = defaultEvents;
+                localStorage.removeItem('banquetera_events_final'); // Limpiar localStorage corrupto
+            }
         }
 
         function saveEvents() {
-            localStorage.setItem('banquetera_events_final', JSON.stringify(events));
+            // Solo guardar los eventos creados por el admin (no los por defecto) y que sean válidos
+            const eventsToSave = events.filter(e => 
+                e.id > 3 && 
+                e.tipoEvento && 
+                e.salon && 
+                e.tipoEvento.trim() !== '' && 
+                e.salon.trim() !== '' &&
+                e.tipoEvento !== 'undefined' &&
+                e.salon !== 'undefined'
+            );
+            try {
+                localStorage.setItem('banquetera_events_final', JSON.stringify(eventsToSave));
+            } catch (error) {
+                console.error('Error saving events:', error);
+                alert('Error al guardar el evento. Intenta de nuevo.');
+            }
         }
 
         function toggleAdmin() {
@@ -627,11 +693,11 @@
                 <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
                     <div style="margin-bottom: 10px;">
                         <label>Nombre:</label>
-                        <input type="text" class="doc-name" placeholder="Ej: Menú Principal" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                        <input type="text" class="doc-name" placeholder="Ej: Menú Principal" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;" required>
                     </div>
                     <div style="margin-bottom: 10px;">
                         <label>Enlace Google Drive:</label>
-                        <input type="url" class="doc-url" placeholder="https://drive.google.com/file/d/..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                        <input type="url" class="doc-url" placeholder="https://drive.google.com/file/d/..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;" required>
                     </div>
                     <div style="margin-bottom: 10px;">
                         <label>Roles:</label>
@@ -641,7 +707,7 @@
                             <label><input type="checkbox" value="cocina"> Cocina</label>
                         </div>
                     </div>
-                    <button type="button" onclick="this.parentElement.remove()" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px;">Eliminar</button>
+                    <button type="button" onclick="this.parentElement.remove(); driveLinksCount--;" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px;">Eliminar</button>
                 </div>
             `;
             container.appendChild(linkItem);
@@ -649,6 +715,16 @@
 
         document.getElementById('eventForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Validar campos obligatorios
+            const tipoEvento = document.getElementById('tipoEvento').value.trim();
+            const salon = document.getElementById('salon').value.trim();
+            const fecha = document.getElementById('fecha').value;
+            
+            if (!tipoEvento || !salon || !fecha) {
+                alert('Por favor completa los campos obligatorios: Tipo de Evento, Salón y Fecha');
+                return;
+            }
             
             const driveLinks = [];
             const linkItems = document.querySelectorAll('#driveLinksList > div');
@@ -675,11 +751,20 @@
             
             const event = {
                 id: Date.now(),
-                center: document.getElementById('eventCenter').value,
-                date: document.getElementById('eventDate').value,
-                time: document.getElementById('eventTime').value,
-                guestCount: document.getElementById('guestCount').value,
-                observations: document.getElementById('observations').value,
+                tipoEvento: tipoEvento,
+                salon: salon,
+                fecha: fecha,
+                genteCoctel: parseInt(document.getElementById('genteCoctel').value) || 0,
+                genteComida: parseInt(document.getElementById('genteComida').value) || 0,
+                genteFiesta: parseInt(document.getElementById('genteFiesta').value) || 0,
+                encargadoOficina: document.getElementById('encargadoOficina').value.trim() || '',
+                superMetre: document.getElementById('superMetre').value.trim() || '',
+                cocineroJefe: document.getElementById('cocineroJefe').value.trim() || '',
+                horarioCitacion: document.getElementById('horarioCitacion').value || '',
+                horarioTermino: document.getElementById('horarioTermino').value || '',
+                horaMisa: document.getElementById('horaMisa').value || '',
+                ceremonia: document.getElementById('ceremonia').value.trim() || '',
+                socioACargo: document.getElementById('socioACargo').value.trim() || '',
                 documents: driveLinks
             };
 
@@ -713,15 +798,72 @@
                 card.className = 'event-card';
                 card.innerHTML = `
                     <div class="event-header">
-                        <div class="event-title">${event.center}</div>
-                        <div class="event-date">${formatDateShort(event.date)}</div>
+                        <div class="event-title">${event.tipoEvento}</div>
+                        <div class="event-date">${formatDateShort(event.fecha)}</div>
                     </div>
-                    <div style="margin-bottom: 25px; color: #666;">
-                        <p><strong>Hora:</strong> ${event.time}</p>
-                        <p><strong>Invitados:</strong> ${event.guestCount}</p>
-                        <p><strong>Documentos:</strong> ${event.documents.length}</p>
-                        ${event.observations ? `<p><strong>Notas:</strong> ${event.observations}</p>` : ''}
+                    
+                    <div class="event-details">
+                        <h4>${event.salon}</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <span class="detail-label">Tipo de Evento:</span>
+                                <span class="detail-value">${event.tipoEvento}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Salón:</span>
+                                <span class="detail-value">${event.salon}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Fecha:</span>
+                                <span class="detail-value">${formatDateShort(event.fecha)}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Gente Coctel:</span>
+                                <span class="detail-value">${event.genteCoctel || 0} personas</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Gente Comida:</span>
+                                <span class="detail-value">${event.genteComida || 0} personas</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Gente Fiesta:</span>
+                                <span class="detail-value">${event.genteFiesta || 0} personas</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Encargado Oficina:</span>
+                                <span class="detail-value">${event.encargadoOficina || 'N/A'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Super Metre:</span>
+                                <span class="detail-value">${event.superMetre || 'N/A'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Cocinero Jefe:</span>
+                                <span class="detail-value">${event.cocineroJefe || 'N/A'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Horario Citación Personal:</span>
+                                <span class="detail-value">${event.horarioCitacion || 'N/A'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Horario Término Evento:</span>
+                                <span class="detail-value">${event.horarioTermino || 'N/A'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Hora Misa:</span>
+                                <span class="detail-value">${event.horaMisa || 'N/A'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Ceremonia:</span>
+                                <span class="detail-value">${event.ceremonia || 'N/A'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Socio a Cargo:</span>
+                                <span class="detail-value">${event.socioACargo || 'N/A'}</span>
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="roles-container">
                         <div class="role-button supervisor" onclick="showDocuments(${event.id}, 'supervisor')">
                             <span class="role-emoji">👔</span>
@@ -752,11 +894,11 @@
             const filteredDocs = event.documents.filter(doc => doc.roles.includes(role));
             
             document.getElementById('modalTitle').textContent = roleNames[role];
-            document.getElementById('modalSubtitle').textContent = `${event.tipoEvento} - ${event.salon} - ${event.fecha}`;
+            document.getElementById('modalSubtitle').textContent = `${event.tipoEvento} - ${event.salon} - ${formatDateShort(event.fecha)}`;
             
             const modalDocs = document.getElementById('modalDocuments');
             if (filteredDocs.length === 0) {
-                modalDocs.innerHTML = '<div class="empty-state"><div class="emoji">📄</div><h3>No hay documentos</h3></div>';
+                modalDocs.innerHTML = '<div class="empty-state"><div class="emoji">📄</div><h3>No hay documentos disponibles para este rol</h3></div>';
             } else {
                 modalDocs.innerHTML = filteredDocs.map(doc => `
                     <div class="document-item">
@@ -779,7 +921,11 @@
         function formatDateShort(dateString) {
             try {
                 const date = new Date(dateString + 'T00:00:00');
-                return date.toLocaleDateString('es-ES', { month: 'short', day: 'numeric' });
+                return date.toLocaleDateString('es-ES', { 
+                    weekday: 'short',
+                    month: 'short', 
+                    day: 'numeric' 
+                });
             } catch (e) {
                 return dateString;
             }
@@ -793,6 +939,34 @@
             adminPanel.insertBefore(div, adminPanel.firstChild);
             setTimeout(() => div.remove(), 3000);
         }
+
+        // Cerrar modal con Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+                closePasswordModal();
+            }
+        });
+
+        // Cerrar modal clickeando fuera
+        document.getElementById('documentsModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.getElementById('passwordModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePasswordModal();
+            }
+        });
+
+        // Enter en el campo de contraseña
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
     </script>
 </body>
 </html>
