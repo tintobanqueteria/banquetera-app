@@ -720,7 +720,7 @@
                         },
                         {
                             name: "Menu",
-                            url: "https://drive.google.com/file/d/1oXo0oqHrKTJmKIXj3QavzFe3aAQ6lbfk/view?usp=sharing",
+                            url: "",
                             roles: ["supervisor", "supermetre", "cocina"]
                         },
                         {
@@ -730,7 +730,7 @@
                         },
                         {
                             name: "Plano",
-                            url: "https://drive.google.com/file/d/1Es9guf7LJ6JYFTqf3CB8taZY1V4eUbrd/view?usp=sharing",
+                            url: "",
                             roles: ["supervisor", "supermetre"]
                         },
                         {
@@ -740,7 +740,7 @@
                         },
                         {
                             name: "Elementos manteleria",
-                            url: "https://drive.google.com/file/d/1P6N4ZJKvtWJwLjuD4ZD61lhuBuWv5FLU/view?usp=sharing",
+                            url: "",
                             roles: ["supermetre"]
                         },
                         {
@@ -750,7 +750,7 @@
                         },
                         {
                             name: "Vajilla",
-                            url: "https://drive.google.com/file/d/1oh7wVqiFp2iuowE_boV51-ZvrVPmJ91s/view?usp=sharing",
+                            url: "",
                             roles: ["supermetre"]
                         },
                         {
@@ -764,7 +764,7 @@
                             roles: ["supermetre"]
                         },
                         {
-                            name: "Prueba",
+                            name: "Prueba Pendiente",
                             url: "",
                             roles: ["supermetre"]
                         }
@@ -1147,15 +1147,24 @@
             if (filteredDocs.length === 0) {
                 modalDocs.innerHTML = '<div class="empty-state"><div class="emoji">📄</div><h3>No hay documentos disponibles para este rol</h3></div>';
             } else {
-                modalDocs.innerHTML = filteredDocs.map(doc => `
-                    <div class="document-item">
-                        <div>
-                            <div style="font-size: 2em;">📄</div>
-                            <h4>${doc.name}</h4>
+                modalDocs.innerHTML = filteredDocs.map(doc => {
+                    const isPending = !doc.url || doc.url.trim() === '';
+                    return `
+                        <div class="document-item ${isPending ? 'pending-document' : ''}">
+                            <div>
+                                <div style="font-size: 2em;" class="${isPending ? 'pending-icon' : ''}">
+                                    ${isPending ? '⏳' : '📄'}
+                                </div>
+                                <h4>${doc.name}</h4>
+                                ${isPending ? '<p style="font-size: 0.9em; color: #856404; margin-top: 5px;">Documento pendiente</p>' : ''}
+                            </div>
+                            ${isPending ? 
+                                '<button class="pending-status">Pendiente</button>' : 
+                                `<button class="view-btn" onclick="window.open('${doc.url}', '_blank')">Ver</button>`
+                            }
                         </div>
-                        <button class="view-btn" onclick="window.open('${doc.url}', '_blank')">Ver</button>
-                    </div>
-                `).join('');
+                    `;
+                }).join('');
             }
             
             document.getElementById('documentsModal').classList.add('active');
