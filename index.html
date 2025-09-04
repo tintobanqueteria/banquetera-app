@@ -13,9 +13,10 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f8f9fa;
             min-height: 100vh;
             padding: 20px;
+            color: #333;
         }
 
         .container {
@@ -23,41 +24,66 @@
             margin: 0 auto;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             overflow: hidden;
+            border: 1px solid #e9ecef;
         }
 
         .header {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            background: linear-gradient(135deg, #000000, #2d3436);
             color: white;
             padding: 30px;
             text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            width: 80px;
+            height: 80px;
+            background-image: url('https://res.cloudinary.com/dqjuqri5z/image/upload/v1756999803/Logo_Negro_y_dorado_thd8vb.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: invert(1) sepia(1) saturate(5) hue-rotate(45deg);
         }
 
         .header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
+            margin-top: 10px;
         }
 
         .admin-toggle {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 8px 12px;
+            background: white;
+            color: #333;
+            padding: 10px 16px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.8em;
-            color: #333;
-            border: none;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            font-size: 0.9em;
+            border: 2px solid #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             z-index: 1000;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .admin-toggle:hover {
+            background: #333;
+            color: white;
         }
 
         .admin-panel {
             display: none;
             background: #f8f9fa;
             padding: 30px;
+            border-bottom: 2px solid #e9ecef;
         }
 
         .admin-panel.active {
@@ -70,14 +96,15 @@
 
         .week-info {
             text-align: center;
-            background: #f8f9fa;
+            background: white;
             padding: 25px;
             border-radius: 15px;
             margin-bottom: 30px;
+            border: 2px solid #333;
         }
 
         .week-info h2 {
-            color: #ff6b6b;
+            color: #333;
             font-size: 2em;
             margin-bottom: 10px;
         }
@@ -90,17 +117,17 @@
 
         .event-card {
             background: white;
-            border: 3px solid #e9ecef;
+            border: 2px solid #333;
             border-radius: 20px;
             padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
         }
 
         .event-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            border-color: #ff6b6b;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-color: #000;
         }
 
         .event-header {
@@ -113,13 +140,13 @@
         }
 
         .event-title {
-            color: #ff6b6b;
+            color: #333;
             font-size: 1.4em;
             font-weight: bold;
         }
 
         .event-date {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            background: #333;
             color: white;
             padding: 8px 15px;
             border-radius: 20px;
@@ -132,10 +159,11 @@
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 25px;
+            border: 1px solid #e9ecef;
         }
 
         .event-details h4 {
-            color: #ff6b6b;
+            color: #333;
             margin-bottom: 15px;
             font-size: 1.2em;
         }
@@ -172,23 +200,21 @@
         }
 
         .role-button {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border: 2px solid #dee2e6;
+            background: white;
+            border: 2px solid #333;
             padding: 20px;
             border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
             font-weight: bold;
-            color: #495057;
+            color: #333;
         }
 
-        .role-button.supervisor { border-color: #007bff; color: #007bff; }
-        .role-button.supervisor:hover { background: #007bff; color: white; }
-        .role-button.supermetre { border-color: #28a745; color: #28a745; }
-        .role-button.supermetre:hover { background: #28a745; color: white; }
-        .role-button.cocina { border-color: #dc3545; color: #dc3545; }
-        .role-button.cocina:hover { background: #dc3545; color: white; }
+        .role-button:hover {
+            background: #333;
+            color: white;
+        }
 
         .role-emoji {
             font-size: 2.5em;
@@ -223,6 +249,7 @@
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
+            border: 2px solid #333;
         }
 
         .close-btn {
@@ -233,7 +260,12 @@
             border: none;
             font-size: 2em;
             cursor: pointer;
-            color: #999;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .close-btn:hover {
+            color: #000;
         }
 
         .document-item {
@@ -243,18 +275,28 @@
             padding: 20px;
             background: #f8f9fa;
             border-radius: 15px;
-            border-left: 5px solid #ff6b6b;
+            border: 2px solid #e9ecef;
             margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .document-item:hover {
+            border-color: #333;
         }
 
         .view-btn {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            background: #333;
             color: white;
             border: none;
             padding: 12px 25px;
             border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn:hover {
+            background: #000;
         }
 
         .empty-state {
@@ -271,14 +313,20 @@
 
         .btn {
             padding: 12px 30px;
-            border: none;
+            border: 2px solid #333;
             border-radius: 10px;
             font-size: 1em;
             font-weight: 600;
             cursor: pointer;
             margin-right: 10px;
             margin-bottom: 10px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            background: white;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #333;
             color: white;
         }
 
@@ -301,6 +349,14 @@
             border: 2px solid #e9ecef;
             border-radius: 10px;
             font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #333;
         }
 
         .form-row {
@@ -331,6 +387,7 @@
             max-width: 400px;
             width: 90%;
             text-align: center;
+            border: 2px solid #333;
         }
 
         .success-message {
@@ -339,15 +396,76 @@
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 20px;
-            border-left: 5px solid #28a745;
+            border: 2px solid #28a745;
+        }
+
+        #modalTitle {
+            color: #333 !important;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        #modalSubtitle {
+            color: #666;
+        }
+
+        /* Estilos para los documentos de Google Drive */
+        .drive-documents-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+
+        .drive-documents-section h4 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .drive-link-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #e9ecef;
+        }
+
+        .drive-link-item input[type="text"],
+        .drive-link-item input[type="url"] {
+            margin-bottom: 10px;
+        }
+
+        .drive-link-item label {
+            margin-right: 15px;
+        }
+
+        .remove-link-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
         @media (max-width: 768px) {
             .roles-container { grid-template-columns: 1fr; gap: 12px; }
-            .admin-toggle { position: static; margin-bottom: 15px; display: block; text-align: center; }
+            .admin-toggle { 
+                position: static; 
+                margin-bottom: 15px; 
+                display: block; 
+                text-align: center; 
+                width: 100px;
+                margin: 0 auto 20px;
+            }
             .form-row { grid-template-columns: 1fr; }
             .events-grid { grid-template-columns: 1fr; }
             .detail-grid { grid-template-columns: 1fr; }
+            .header::before {
+                width: 60px;
+                height: 60px;
+            }
         }
     </style>
 </head>
@@ -357,11 +475,11 @@
     <!-- Modal contraseña -->
     <div id="passwordModal" class="password-modal">
         <div class="password-content">
-            <h3 style="color: #ff6b6b; margin-bottom: 15px;">Acceso Admin</h3>
+            <h3 style="color: #333; margin-bottom: 15px;">Acceso Admin</h3>
             <input type="password" id="passwordInput" placeholder="Contraseña" style="width: 100%; padding: 15px; margin: 20px 0; border: 2px solid #e9ecef; border-radius: 10px; text-align: center;">
             <div>
                 <button class="btn" onclick="checkPassword()">Acceder</button>
-                <button class="btn" onclick="closePasswordModal()" style="background: #6c757d;">Cancelar</button>
+                <button class="btn" onclick="closePasswordModal()" style="background: #6c757d; color: white;">Cancelar</button>
             </div>
             <div id="passwordError" style="color: #dc3545; margin-top: 15px; display: none;">Contraseña incorrecta</div>
         </div>
@@ -370,7 +488,7 @@
     <div class="container">
         <!-- Panel Admin -->
         <div id="adminPanel" class="admin-panel">
-            <h2 style="color: #ff6b6b; margin-bottom: 25px;">Panel Administrativo</h2>
+            <h2 style="color: #333; margin-bottom: 25px;">Panel Administrativo</h2>
 
             <form id="eventForm">
                 <div class="form-row">
@@ -450,7 +568,7 @@
                     </div>
                 </div>
                 
-                <div style="background: #e3f2fd; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                <div class="drive-documents-section">
                     <h4>Documentos de Google Drive</h4>
                     <div id="driveLinksList"></div>
                     <button type="button" class="btn" onclick="addDriveLink()">Agregar Documento</button>
@@ -480,8 +598,8 @@
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">&times;</button>
             <div style="text-align: center; margin-bottom: 30px;">
-                <div id="modalTitle" style="color: #ff6b6b; font-size: 2em; margin-bottom: 10px;"></div>
-                <div id="modalSubtitle" style="color: #666;"></div>
+                <div id="modalTitle"></div>
+                <div id="modalSubtitle"></div>
             </div>
             <div id="modalDocuments"></div>
         </div>
@@ -794,12 +912,12 @@
             if (panel.classList.contains('active')) {
                 panel.classList.remove('active');
                 btn.textContent = 'Admin';
-                btn.style.background = 'rgba(255, 255, 255, 0.9)';
+                btn.style.background = 'white';
                 btn.style.color = '#333';
             } else {
                 panel.classList.add('active');
                 btn.textContent = 'Cerrar';
-                btn.style.background = 'rgba(220, 53, 69, 0.9)';
+                btn.style.background = '#dc3545';
                 btn.style.color = 'white';
                 if (driveLinksCount === 0) addDriveLink();
             }
@@ -809,15 +927,16 @@
             driveLinksCount++;
             const container = document.getElementById('driveLinksList');
             const linkItem = document.createElement('div');
+            linkItem.className = 'drive-link-item';
             linkItem.innerHTML = `
-                <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                <div>
                     <div style="margin-bottom: 10px;">
                         <label>Nombre:</label>
-                        <input type="text" class="doc-name" placeholder="Ej: Menú Principal" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;" required>
+                        <input type="text" class="doc-name" placeholder="Ej: Menú Principal" required>
                     </div>
                     <div style="margin-bottom: 10px;">
                         <label>Enlace Google Drive:</label>
-                        <input type="url" class="doc-url" placeholder="https://drive.google.com/file/d/..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px;" required>
+                        <input type="url" class="doc-url" placeholder="https://drive.google.com/file/d/..." required>
                     </div>
                     <div style="margin-bottom: 10px;">
                         <label>Roles:</label>
@@ -827,7 +946,7 @@
                             <label><input type="checkbox" value="cocina"> Cocina</label>
                         </div>
                     </div>
-                    <button type="button" onclick="this.parentElement.remove(); driveLinksCount--;" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px;">Eliminar</button>
+                    <button type="button" class="remove-link-btn" onclick="this.parentElement.parentElement.remove(); driveLinksCount--;">Eliminar</button>
                 </div>
             `;
             container.appendChild(linkItem);
@@ -847,7 +966,7 @@
             }
             
             const driveLinks = [];
-            const linkItems = document.querySelectorAll('#driveLinksList > div');
+            const linkItems = document.querySelectorAll('.drive-link-item');
             
             linkItems.forEach(item => {
                 const name = item.querySelector('.doc-name').value.trim();
