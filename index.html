@@ -475,25 +475,50 @@
             loadEvents();
         });
 
+        // Función para mostrar la sección de eventos
+        function showEventsSection() {
+            document.getElementById('dashboardMain').style.display = 'none';
+            document.getElementById('eventsSection').style.display = 'block';
+            document.querySelector('.back-button').style.display = 'block';
+            displayEvents();
+        }
+
+        // Función para volver al dashboard
+        function showDashboard() {
+            document.getElementById('dashboardMain').style.display = 'block';
+            document.getElementById('eventsSection').style.display = 'none';
+            document.querySelector('.back-button').style.display = 'none';
+        }
+
+        // Función para abrir el link de fotos
+        function openPhotosLink() {
+            window.open('https://script.google.com/macros/s/AKfycby6KPm1npHEUjfTE8fm7CL5sNpPnOxXKM4-w3wARk2iWehNTeGM5L-oxGYdU6LxsIIJRQ/exec', '_blank');
+        }
+
+        // Función para abrir el link de gestión
+        function openGestionLink() {
+            window.open('https://script.google.com/macros/s/AKfycbxkQ8F2eQrFgilLka9n3if7U7q3JJtcL_ZAfkCkWrN-87xJevC4XL9GyQ7uJG6RtnBT/exec', '_blank');
+        }
+
         function loadEvents() {
-            // Eventos ejemplo con todos los campos obligatorios
+            // Solo un evento de ejemplo con todos los documentos
             const defaultEvents = [
                 {
                     id: 1,
-                    tipoEvento:	"Corporativo",
-                    salon:	"Apoquindo 4800",
-                    fecha:	"2025-09-10",
-                    genteCoctel:	130 ,
-                    genteComida:	0 ,
-                    genteFiesta:	0 ,
-                    encargadoOficina:	"Nacho",
-                    superMetre:	"Pablo",
-                    cocineroJefe:	"Angelo",
-                    horarioCitacion:	"",
-                    horarioTermino:	"15:00",
-                    horaMisa:	"12:00",
-                    ceremonia:	"No hay",
-                    socioACargo:	"Nacho",
+                    tipoEvento: "Matrimonio",
+                    salon: "Parque San Rafael",
+                    fecha: "2025-09-12",
+                    genteCoctel: 389,
+                    genteComida: 389,
+                    genteFiesta: 29,
+                    encargadoOficina: "Fernando/Juan Carlos",
+                    superMetre: "Javi",
+                    cocineroJefe: "Angelo/Marcelo",
+                    horarioCitacion: "12:30",
+                    horarioTermino: "04:30",
+                    horaMisa: "17:30",
+                    ceremonia: "En el lugar",
+                    socioACargo: "Nacho",
                     documents: [
                         {
                             name: "Minuta",
@@ -626,412 +651,185 @@
                             roles: ["cocina"]
                         }
                     ]
-                },
-                {
-                    id: 2,
-                    tipoEvento:	"Matrimonio",
-                    salon:	"Parque San Rafael",
-                    fecha:	"2025-09-12",
-                    genteCoctel:	389 ,
-                    genteComida:	389 ,
-                    genteFiesta:	29 ,
-                    encargadoOficina:	"Fernando/Juan Carlos",
-                    superMetre:	"Javi",
-                    cocineroJefe:	"Angelo/Marcelo",
-                    horarioCitacion:	"12:30",
-                    horarioTermino:	"04:30",
-                    horaMisa:	"17:30",
-                    ceremonia:	"En el lugar",
-                    socioACargo:	"Nacho",
-                    documents: [
-                        {
-                            name: "Minuta",
-                            url: "",
-                            roles: ["cocina", "supervisor"]
-                        },
-                        {
-                            name: "Menu",
-                            url: "",
-                            roles: ["supervisor", "supermetre", "cocina"]
-                        },
-                        {
-                            name: "Lista de despacho",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Plano",
-                            url: "",
-                            roles: ["supervisor", "supermetre"]
-                        },
-                        {
-                            name: "Elementos casa",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Elementos manteleria",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Elementos logistica",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Vajilla",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Elementos Bar",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Bebestibles",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Detalle de montaje",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Proporcion Bajon",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Proporcion coctel",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Proporcion Comida Personal",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Proporcion entrada",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Proporcion PF",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Elementos postres",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Casos especiales",
-                            url: "",
-                            roles: ["cocina", "supermetre"]
-                        },
-                        {
-                            name: "Puestos por mesa",
-                            url: "",
-                            roles: ["cocina", "supermetre", "supervisor"]
-                        },
-                        {
-                            name: "Detalle evento",
-                            url: "",
-                            roles: ["cocina", "supermetre", "supervisor"]
-                        },
-                        {
-                            name: "Listas garzones",
-                            url: "",
-                            roles: ["supermetre", "supervisor"]
-                        },
-                        {
-                            name: "Tabla copetes",
-                            url: "",
-                            roles: ["supervisor"]
-                        },
-                        {
-                            name: "Receta flores",
-                            url: "",
-                            roles: ["supervisor"]
-                        },
-                        {
-                            name: "Cheklist supervisores",
-                            url: "",
-                            roles: ["supervisor"]
-                        },
-                        {
-                            name: "Ultimos protocolos",
-                            url: "",
-                            roles: ["supervisor"]
-                        },
-                        {
-                            name: "Formato postres",
-                            url: "",
-                            roles: ["cocina"]
-                        }
-                    ]
-                },
-                {
-                    id: 3,
-                    tipoEvento:	"Matrimonio",
-                    salon:	"Viña Santa Carolina",
-                    fecha:	"2025-09-13",
-                    genteCoctel:	354 ,
-                    genteComida:	354 ,
-                    genteFiesta:	69 ,
-                    encargadoOficina:	"Tere/Popy",
-                    superMetre:	"Rodolfo",
-                    cocineroJefe:	"Edgardo",
-                    horarioCitacion:	"11:45",
-                    horarioTermino:	"03:00",
-                    horaMisa:	"16:45",
-                    ceremonia:	"Ángeles Custodios",
-                    socioACargo:	"Benja",
-                    documents: [
-                        {
-                            name: "Minuta",
-                            url: "",
-                            roles: ["cocina", "supervisor"]
-                        },
-                        {
-                            name: "Menu",
-                            url: "",
-                            roles: ["supervisor", "supermetre", "cocina"]
-                        },
-                        {
-                            name: "Lista de despacho",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Plano",
-                            url: "",
-                            roles: ["supervisor", "supermetre"]
-                        },
-                        {
-                            name: "Elementos casa",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Elementos manteleria",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Elementos logistica",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Vajilla",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Elementos Bar",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Bebestibles",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Detalle de montaje",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Proporcion Bajon",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Proporcion coctel",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Proporcion Comida Personal",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Proporcion entrada",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Proporcion PF",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Elementos postres",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Casos especiales",
-                            url: "",
-                            roles: ["cocina", "supermetre"]
-                        },
-                        {
-                            name: "Puestos por mesa",
-                            url: "",
-                            roles: ["cocina", "supermetre", "supervisor"]
-                        },
-                        {
-                            name: "Detalle evento",
-                            url: "",
-                            roles: ["cocina", "supermetre", "supervisor"]
-                        },
-                        {
-                            name: "Listas garzones",
-                            url: "",
-                            roles: ["supermetre", "supervisor"]
-                        },
-                        {
-                            name: "Tabla copetes",
-                            url: "",
-                            roles: ["supervisor"]
-                        },
-                        {
-                            name: "Receta flores",
-                            url: "",
-                            roles: ["supervisor"]
-                        },
-                        {
-                            name: "Cheklist supervisores",
-                            url: "",
-                            roles: ["supervisor"]
-                        },
-                        {
-                            name: "Ultimos protocolos",
-                            url: "",
-                            roles: ["supervisor"]
-                        },
-                        {
-                            name: "Formato postres",
-                            url: "",
-                            roles: ["cocina"]
-                        }
-                    ]
-                },
-                {
-                    id: 4,
-                    tipoEvento:	"Matrimonio",
-                    salon:	"Club de Polo Vitacura",
-                    fecha:	"2025-09-13",
-                    genteCoctel:	288 ,
-                    genteComida:	288 ,
-                    genteFiesta:	8 ,
-                    encargadoOficina:	"Dolores/Rosario",
-                    superMetre:	"Pablo",
-                    cocineroJefe:	"Horte",
-                    horarioCitacion:	"12:00",
-                    horarioTermino:	"02:30",
-                    horaMisa:	"17:00",
-                    ceremonia:	"Santa Elena",
-                    socioACargo:	"Nacho",
-                    documents: [
-                        {
-                            name: "Minuta",
-                            url: "",
-                            roles: ["cocina", "supervisor"]
-                        },
-                        {
-                            name: "Menu",
-                            url: "",
-                            roles: ["supervisor", "supermetre", "cocina"]
-                        },
-                        {
-                            name: "Lista de despacho",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Plano",
-                            url: "",
-                            roles: ["supervisor", "supermetre"]
-                        },
-                        {
-                            name: "Elementos casa",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Elementos manteleria",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Elementos logistica",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Vajilla",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Elementos Bar",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Bebestibles",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Detalle de montaje",
-                            url: "",
-                            roles: ["supermetre"]
-                        },
-                        {
-                            name: "Proporcion Bajon",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Proporcion coctel",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Proporcion Comida Personal",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Proporcion entrada",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Proporcion PF",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Elementos postres",
-                            url: "",
-                            roles: ["cocina"]
-                        },
-                        {
-                            name: "Casos especiales",
-                            url: "",
-                            roles: ["cocina", "supermetre"]
-                        },
-                        {
-                            name: "Puestos por mesa",
-                            url: "",
+                }
+            ];
+
+            events = defaultEvents;
+        }
+
+        function displayEvents() {
+            const container = document.getElementById('eventsContainer');
+            const weekDates = document.getElementById('weekDates');
+            
+            if (events.length === 0) {
+                weekDates.textContent = 'No hay eventos';
+                container.innerHTML = '<div class="empty-state"><div class="emoji">📅</div><h3>No hay eventos</h3></div>';
+                return;
+            }
+            
+            weekDates.textContent = `${events.length} evento disponible`;
+            container.innerHTML = '';
+            
+            events.forEach(event => {
+                const card = document.createElement('div');
+                card.className = 'event-card';
+                card.innerHTML = `
+                    <div class="event-header">
+                        <div class="event-title">${event.tipoEvento}</div>
+                        <div class="event-date">${formatDateShort(event.fecha)}</div>
+                    </div>
+                    
+                    <div class="event-details">
+                        <h4>${event.salon}</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <span class="detail-label">Tipo de Evento:</span>
+                                <span class="detail-value">${event.tipoEvento}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Salón:</span>
+                                <span class="detail-value">${event.salon}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Fecha:</span>
+                                <span class="detail-value">${formatDateShort(event.fecha)}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Gente Coctel:</span>
+                                <span class="detail-value">${event.genteCoctel || 0} personas</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Gente Comida:</span>
+                                <span class="detail-value">${event.genteComida || 0} personas</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Gente Fiesta:</span>
+                                <span class="detail-value">${event.genteFiesta || 0} personas</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Encargado Oficina:</span>
+                                <span class="detail-value">${event.encargadoOficina || 'N/A'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Super Metre:</span>
+                                <span class="detail-value">${event.superMetre || 'N/A'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Cocinero Jefe:</span>
+                                <span class="detail-value">${event.cocineroJefe || 'N/A'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Horario Citación Personal:</span>
+                                <span class="detail-value">${event.horarioCitacion || 'N/A'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Horario Término Evento:</span>
+                                <span class="detail-value">${event.horarioTermino || 'N/A'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Hora Misa:</span>
+                                <span class="detail-value">${event.horaMisa || 'N/A'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Ceremonia:</span>
+                                <span class="detail-value">${event.ceremonia || 'N/A'}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Socio a Cargo:</span>
+                                <span class="detail-value">${event.socioACargo || 'N/A'}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="roles-container">
+                        <div class="role-button supervisor" onclick="showDocuments(${event.id}, 'supervisor')">
+                            <span class="role-emoji">👔</span>
+                            <div>Supervisor</div>
+                        </div>
+                        <div class="role-button supermetre" onclick="showDocuments(${event.id}, 'supermetre')">
+                            <span class="role-emoji">🎩</span>
+                            <div>Supermetre</div>
+                        </div>
+                        <div class="role-button cocina" onclick="showDocuments(${event.id}, 'cocina')">
+                            <span class="role-emoji">👨‍🍳</span>
+                            <div>Cocina</div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function showDocuments(eventId, role) {
+            const event = events.find(e => e.id === eventId);
+            const roleNames = {
+                supervisor: 'Supervisor 👔',
+                supermetre: 'Supermetre 🎩', 
+                cocina: 'Cocina 👨‍🍳'
+            };
+            
+            const filteredDocs = event.documents.filter(doc => doc.roles.includes(role));
+            
+            document.getElementById('modalTitle').textContent = roleNames[role];
+            document.getElementById('modalSubtitle').textContent = `${event.tipoEvento} - ${event.salon} - ${formatDateShort(event.fecha)}`;
+            
+            const modalDocs = document.getElementById('modalDocuments');
+            if (filteredDocs.length === 0) {
+                modalDocs.innerHTML = '<div class="empty-state"><div class="emoji">📄</div><h3>No hay documentos disponibles para este rol</h3></div>';
+            } else {
+                modalDocs.innerHTML = filteredDocs.map(doc => {
+                    const isPending = !doc.url || doc.url.trim() === '';
+                    return `
+                        <div class="document-item ${isPending ? 'pending-document' : ''}">
+                            <div>
+                                <div style="font-size: 2em;" class="${isPending ? 'pending-icon' : ''}">
+                                    ${isPending ? '⏳' : '📄'}
+                                </div>
+                                <h4>${doc.name}</h4>
+                                ${isPending ? '<p style="font-size: 0.9em; color: #856404; margin-top: 5px;">Documento pendiente</p>' : ''}
+                            </div>
+                            ${isPending ? 
+                                '<button class="pending-status">Pendiente</button>' : 
+                                `<button class="view-btn" onclick="window.open('${doc.url}', '_blank')">Ver</button>`
+                            }
+                        </div>
+                    `;
+                }).join('');
+            }
+            
+            document.getElementById('documentsModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('documentsModal').classList.remove('active');
+        }
+
+        function formatDateShort(dateString) {
+            try {
+                const date = new Date(dateString + 'T00:00:00');
+                return date.toLocaleDateString('es-ES', { 
+                    weekday: 'short',
+                    month: 'short', 
+                    day: 'numeric' 
+                });
+            } catch (e) {
+                return dateString;
+            }
+        }
+
+        // Cerrar modal con Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Cerrar modal clickeando fuera
+        document.getElementById('documentsModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
