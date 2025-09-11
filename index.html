@@ -665,7 +665,7 @@
             window.open('https://faceted-aunt-dc4.notion.site/Estructura-VE-14d8dfda4609800a8d4be658c6b9fab6?pvs=74', '_blank');
         }
 
-        // Simplified event data with just 2 events for testing
+        // Complete event data with all documents and roles
         const eventsData = [
             {
                 id: 1,
@@ -684,11 +684,32 @@
                 ceremonia: "No hay",
                 socioACargo: "Nacho",
                 documents: [
-                    { name: "Checklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
-                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
-                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] },
+                    { name: "Minuta", url: "", roles: ["cocina", "supervisor"] },
                     { name: "Menu", url: "", roles: ["supervisor", "supermetre", "cocina"] },
-                    { name: "Lista de despacho", url: "", roles: ["cocina"] }
+                    { name: "Lista de despacho", url: "", roles: ["cocina"] },
+                    { name: "Plano", url: "", roles: ["supervisor", "supermetre"] },
+                    { name: "Elementos casa", url: "", roles: ["supermetre"] },
+                    { name: "Elementos manteleria", url: "", roles: ["supermetre"] },
+                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
+                    { name: "Vajilla", url: "", roles: ["supermetre"] },
+                    { name: "Elementos Bar", url: "", roles: ["supermetre"] },
+                    { name: "Bebestibles", url: "", roles: ["supermetre"] },
+                    { name: "Detalle de montaje", url: "", roles: ["supermetre"] },
+                    { name: "Proporcion Bajon", url: "", roles: ["cocina"] },
+                    { name: "Proporcion coctel", url: "", roles: ["cocina"] },
+                    { name: "Proporcion Comida Personal", url: "", roles: ["cocina"] },
+                    { name: "Proporcion entrada", url: "", roles: ["cocina"] },
+                    { name: "Proporcion PF", url: "", roles: ["cocina"] },
+                    { name: "Elementos postres", url: "", roles: ["cocina"] },
+                    { name: "Casos especiales", url: "", roles: ["cocina", "supermetre"] },
+                    { name: "Puestos por mesa", url: "", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Detalle evento", url: "", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Listas garzones", url: "", roles: ["supermetre", "supervisor"] },
+                    { name: "Tabla copetes", url: "", roles: ["supervisor"] },
+                    { name: "Receta flores", url: "", roles: ["supervisor"] },
+                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
+                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
+                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
                 ]
             },
             {
@@ -712,7 +733,28 @@
                     { name: "Menu", url: "https://drive.google.com/file/d/16PKd-xLInof7BKxVORXJKsKebzVZlRWN/view", roles: ["supervisor", "supermetre", "cocina"] },
                     { name: "Lista de despacho", url: "https://drive.google.com/file/d/1pTfa--7vQeVo_VevKtMRxlgT1S1o865p/view", roles: ["cocina"] },
                     { name: "Plano", url: "https://drive.google.com/file/d/1c2NKwjquB00AG-ReOD9g36SjWFTHwhuM/view", roles: ["supervisor", "supermetre"] },
-                    { name: "Elementos casa", url: "https://drive.google.com/file/d/16HMJzNDn4E3Hx9VrUveXZqoVoP9Z5WZx/view", roles: ["supermetre"] }
+                    { name: "Elementos casa", url: "https://drive.google.com/file/d/16HMJzNDn4E3Hx9VrUveXZqoVoP9Z5WZx/view", roles: ["supermetre"] },
+                    { name: "Elementos manteleria", url: "https://drive.google.com/file/d/17ww5DT8OxNw8acsMD5Zb-aqSMfgRp7CI/view", roles: ["supermetre"] },
+                    { name: "Elementos logistica", url: "https://drive.google.com/file/d/1kI-q4nlH3_KDbK-2dY8OvsxJJV6GAJ0n/view", roles: ["supermetre"] },
+                    { name: "Vajilla", url: "https://drive.google.com/file/d/1jBKT74xjGK_d8Lk5A0YXihOfSjLMMIqC/view", roles: ["supermetre"] },
+                    { name: "Elementos Bar", url: "https://drive.google.com/file/d/11nStA09quqF3VWpTPDiuivxvte3u3Wqh/view", roles: ["supermetre"] },
+                    { name: "Bebestibles", url: "https://drive.google.com/file/d/1BzDurLQ5RjixZ-dBDj8UAZlZWJj4rEsj/view", roles: ["supermetre"] },
+                    { name: "Detalle de montaje", url: "https://drive.google.com/file/d/1L0wsLpncjBHDrmFjkCmgyDiRqj6-ixPG/view", roles: ["supermetre"] },
+                    { name: "Proporcion Bajon", url: "https://drive.google.com/file/d/139XCpzE5XCl9SZtYX-csX6lqjOgSzuBA/view", roles: ["cocina"] },
+                    { name: "Proporcion coctel", url: "https://drive.google.com/file/d/1N0hX81cPf8PaCgM49GneWtthlg7yzhjb/view", roles: ["cocina"] },
+                    { name: "Proporcion Comida Personal", url: "", roles: ["cocina"] },
+                    { name: "Proporcion entrada", url: "https://drive.google.com/file/d/1zBiyW6-s7Vg6GlRudMLGk4mDoGHrsHBX/view", roles: ["cocina"] },
+                    { name: "Proporcion PF", url: "https://drive.google.com/file/d/1ZcUnu4YRxxNBKeyInHMT5F29ykjwUuWP/view", roles: ["cocina"] },
+                    { name: "Elementos postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] },
+                    { name: "Casos especiales", url: "", roles: ["cocina", "supermetre"] },
+                    { name: "Puestos por mesa", url: "", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Detalle evento", url: "", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Listas garzones", url: "", roles: ["supermetre", "supervisor"] },
+                    { name: "Tabla copetes", url: "", roles: ["supervisor"] },
+                    { name: "Receta flores", url: "", roles: ["supervisor"] },
+                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
+                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
+                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
                 ]
             }
         ];
