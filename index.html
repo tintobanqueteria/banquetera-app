@@ -667,60 +667,189 @@
             window.open('https://faceted-aunt-dc4.notion.site/Estructura-VE-14d8dfda4609800a8d4be658c6b9fab6?pvs=74', '_blank');
         }
 
+        // Event Data - AQUÍ AGREGAS TUS GOOGLE DRIVE LINKS
+        const eventData = {
+            tipoEvento: "Matrimonio",
+            salon: "Parque San Rafael",
+            fecha: "2025-09-12",
+            genteCoctel: 389,
+            genteComida: 389,
+            genteFiesta: 29,
+            encargadoOficina: "Fernando/Juan Carlos",
+            superMetre: "Javi",
+            cocineroJefe: "Angelo/Marcelo",
+            documents: [
+                {
+                    name: "Minuta",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["cocina", "supervisor"]
+                },
+                {
+                    name: "Menu",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["supervisor", "supermetre", "cocina"]
+                },
+                {
+                    name: "Lista de despacho",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["cocina"]
+                },
+                {
+                    name: "Plano",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["supervisor", "supermetre"]
+                },
+                {
+                    name: "Elementos casa",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["supermetre"]
+                },
+                {
+                    name: "Elementos manteleria",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["supermetre"]
+                },
+                {
+                    name: "Elementos logistica",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["supermetre"]
+                },
+                {
+                    name: "Vajilla",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["supermetre"]
+                },
+                {
+                    name: "Elementos Bar",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["supermetre"]
+                },
+                {
+                    name: "Bebestibles",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["supermetre"]
+                },
+                {
+                    name: "Detalle de montaje",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["supermetre"]
+                },
+                {
+                    name: "Proporcion Bajon",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["cocina"]
+                },
+                {
+                    name: "Proporcion coctel",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["cocina"]
+                },
+                {
+                    name: "Proporcion Comida Personal",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["cocina"]
+                },
+                {
+                    name: "Proporcion entrada",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["cocina"]
+                },
+                {
+                    name: "Proporcion PF",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["cocina"]
+                },
+                {
+                    name: "Elementos postres",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["cocina"]
+                },
+                {
+                    name: "Casos especiales",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["cocina", "supermetre"]
+                },
+                {
+                    name: "Puestos por mesa",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["cocina", "supermetre", "supervisor"]
+                },
+                {
+                    name: "Detalle evento",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["cocina", "supermetre", "supervisor"]
+                },
+                {
+                    name: "Listas garzones",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["supermetre", "supervisor"]
+                },
+                {
+                    name: "Tabla copetes",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["supervisor"]
+                },
+                {
+                    name: "Receta flores",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["supervisor"]
+                },
+                {
+                    name: "Cheklist supervisores",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["supervisor"]
+                },
+                {
+                    name: "Ultimos protocolos",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["supervisor"]
+                },
+                {
+                    name: "Formato postres",
+                    url: "", // AGREGAR TU LINK AQUÍ
+                    roles: ["cocina"]
+                }
+            ]
+        };
+
         // Event Display
         function displayEvent() {
             const container = document.getElementById('eventsContainer');
-            const event = {
-                tipoEvento: "Matrimonio",
-                salon: "Parque San Rafael",
-                fecha: "2025-09-12",
-                genteCoctel: 389,
-                genteComida: 389,
-                genteFiesta: 29,
-                encargadoOficina: "Fernando/Juan Carlos",
-                superMetre: "Javi",
-                cocineroJefe: "Angelo/Marcelo",
-                documents: {
-                    supervisor: ["Minuta", "Menu", "Plano", "Listas garzones", "Tabla copetes", "Cheklist supervisores"],
-                    supermetre: ["Menu", "Plano", "Elementos casa", "Elementos manteleria", "Vajilla", "Elementos Bar"],
-                    cocina: ["Minuta", "Menu", "Lista de despacho", "Proporcion Bajon", "Proporcion coctel", "Elementos postres"]
-                }
-            };
-
+            
             container.innerHTML = `
                 <div class="event-card">
                     <div class="event-header">
-                        <div class="event-title">${event.tipoEvento}</div>
+                        <div class="event-title">${eventData.tipoEvento}</div>
                         <div class="event-date">vie, sep 12</div>
                     </div>
                     <div class="detail-grid">
                         <div class="detail-item">
                             <span>Salón:</span>
-                            <span>${event.salon}</span>
+                            <span>${eventData.salon}</span>
                         </div>
                         <div class="detail-item">
                             <span>Gente Coctel:</span>
-                            <span>${event.genteCoctel} personas</span>
+                            <span>${eventData.genteCoctel} personas</span>
                         </div>
                         <div class="detail-item">
                             <span>Gente Comida:</span>
-                            <span>${event.genteComida} personas</span>
+                            <span>${eventData.genteComida} personas</span>
                         </div>
                         <div class="detail-item">
                             <span>Gente Fiesta:</span>
-                            <span>${event.genteFiesta} personas</span>
+                            <span>${eventData.genteFiesta} personas</span>
                         </div>
                         <div class="detail-item">
                             <span>Encargado Oficina:</span>
-                            <span>${event.encargadoOficina}</span>
+                            <span>${eventData.encargadoOficina}</span>
                         </div>
                         <div class="detail-item">
                             <span>Super Metre:</span>
-                            <span>${event.superMetre}</span>
+                            <span>${eventData.superMetre}</span>
                         </div>
                         <div class="detail-item">
                             <span>Cocinero Jefe:</span>
-                            <span>${event.cocineroJefe}</span>
+                            <span>${eventData.cocineroJefe}</span>
                         </div>
                     </div>
                     <div class="roles-container">
@@ -749,25 +878,28 @@
                 cocina: 'Cocina 👨‍🍳'
             };
 
-            const documents = {
-                supervisor: ["Minuta", "Menu", "Plano", "Listas garzones", "Tabla copetes", "Cheklist supervisores"],
-                supermetre: ["Menu", "Plano", "Elementos casa", "Elementos manteleria", "Vajilla", "Elementos Bar"],
-                cocina: ["Minuta", "Menu", "Lista de despacho", "Proporcion Bajon", "Proporcion coctel", "Elementos postres"]
-            };
+            // Filtrar documentos por rol
+            const filteredDocs = eventData.documents.filter(doc => doc.roles.includes(role));
 
             document.getElementById('modalTitle').textContent = roleNames[role];
-            document.getElementById('modalSubtitle').textContent = 'Matrimonio - Parque San Rafael - vie, sep 12';
+            document.getElementById('modalSubtitle').textContent = `${eventData.tipoEvento} - ${eventData.salon} - vie, sep 12`;
 
-            const docsHtml = documents[role].map(doc => `
-                <div class="document-item">
-                    <div>
-                        <div style="font-size: 1.5em;">⏳</div>
-                        <h4>${doc}</h4>
-                        <p style="color: #856404; font-size: 0.85em; margin-top: 3px;">Documento pendiente</p>
+            const docsHtml = filteredDocs.map(doc => {
+                const hasUrl = doc.url && doc.url.trim() !== '';
+                return `
+                    <div class="document-item">
+                        <div>
+                            <div style="font-size: 1.5em;">${hasUrl ? '📄' : '⏳'}</div>
+                            <h4>${doc.name}</h4>
+                            ${!hasUrl ? '<p style="color: #856404; font-size: 0.85em; margin-top: 3px;">Documento pendiente</p>' : ''}
+                        </div>
+                        ${hasUrl ? 
+                            `<button class="view-btn" onclick="window.open('${doc.url}', '_blank')">Ver</button>` :
+                            '<button class="pending-status">Pendiente</button>'
+                        }
                     </div>
-                    <button class="pending-status">Pendiente</button>
-                </div>
-            `).join('');
+                `;
+            }).join('');
 
             document.getElementById('modalDocuments').innerHTML = docsHtml;
             document.getElementById('documentsModal').classList.add('active');
