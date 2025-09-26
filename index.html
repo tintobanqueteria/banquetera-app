@@ -683,7 +683,6 @@
                 id: 1,
                 tipoEvento:	"Matrimonio",
                 salon:	"Parque San Rafael",
-                novios:	"Fernanda Pardo y Clemente Alessandri",
                 fecha:	"2025-09-26",
                 genteCoctel:	315 ,
                 genteComida:	315 ,
@@ -873,6 +872,7 @@
                     </div>
                     <div class="detail-grid">
                         <div class="detail-item"><span>Salón:</span><span>${event.salon}</span></div>
+                        ${event.novios ? `<div class="detail-item"><span>Novios:</span><span>${event.novios}</span></div>` : ''}
                         <div class="detail-item"><span>Gente Coctel:</span><span>${event.genteCoctel} personas</span></div>
                         <div class="detail-item"><span>Gente Comida:</span><span>${event.genteComida} personas</span></div>
                         <div class="detail-item"><span>Gente Fiesta:</span><span>${event.genteFiesta} personas</span></div>
