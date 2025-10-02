@@ -45,6 +45,7 @@
             opacity: 0.9;
         }
 
+        /* Login Screen */
         .login-screen {
             display: flex;
             flex-direction: column;
@@ -83,6 +84,7 @@
             transform: translateY(-2px);
         }
 
+        /* Password Modal */
         .password-modal {
             display: none;
             position: fixed;
@@ -146,6 +148,7 @@
             display: none;
         }
 
+        /* Dashboard */
         .dashboard-content {
             padding: 40px 20px;
             display: none;
@@ -218,6 +221,7 @@
         .section-card.voda { background: linear-gradient(135deg, #fff 0%, #fce4ec 100%); }
         .section-card.septima { background: linear-gradient(135deg, #fff 0%, #e8f4f8 100%); }
 
+        /* Events Section */
         .events-section {
             display: none;
             padding: 30px 20px;
@@ -317,6 +321,7 @@
             color: white;
         }
 
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -392,30 +397,95 @@
             cursor: default;
         }
 
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            body { padding: 5px; }
-            .header { padding: 25px 15px; }
-            .header h1 { font-size: 2em; }
-            .dashboard-content { padding: 25px 15px; }
-            .events-section { padding: 20px 15px; }
-            .sections-grid { grid-template-columns: 1fr; gap: 15px; }
-            .section-card { padding: 20px 15px; }
-            .section-title { font-size: 1.1em; }
-            .section-icon { font-size: 2.5em; }
-            .roles-container { grid-template-columns: 1fr; gap: 10px; }
-            .role-button { padding: 12px; }
-            .detail-grid { font-size: 0.8em; }
-            .event-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .modal-content { padding: 20px; margin: 10px; }
-            .password-content { padding: 25px 20px; margin: 0 10px; }
+            body {
+                padding: 5px;
+            }
+            
+            .header {
+                padding: 25px 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .dashboard-content {
+                padding: 25px 15px;
+            }
+            
+            .events-section {
+                padding: 20px 15px;
+            }
+            
+            .sections-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .section-card {
+                padding: 20px 15px;
+            }
+            
+            .section-title {
+                font-size: 1.1em;
+            }
+            
+            .section-icon {
+                font-size: 2.5em;
+            }
+            
+            .roles-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .role-button {
+                padding: 12px;
+            }
+            
+            .detail-grid {
+                font-size: 0.8em;
+            }
+            
+            .event-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .password-content {
+                padding: 25px 20px;
+                margin: 0 10px;
+            }
         }
 
         @media (max-width: 480px) {
-            .header h1 { font-size: 1.8em; }
-            .login-content h2 { font-size: 1.8em; }
-            .section-icon { font-size: 2.2em; }
-            .section-title { font-size: 1em; }
-            .section-description { font-size: 0.85em; }
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .login-content h2 {
+                font-size: 1.8em;
+            }
+            
+            .section-icon {
+                font-size: 2.2em;
+            }
+            
+            .section-title {
+                font-size: 1em;
+            }
+            
+            .section-description {
+                font-size: 0.85em;
+            }
         }
     </style>
 </head>
@@ -426,6 +496,7 @@
             <p>Sistema de gestión integral</p>
         </div>
 
+        <!-- Login Screen -->
         <div id="loginScreen" class="login-screen">
             <div class="login-content">
                 <h2>Bienvenido</h2>
@@ -434,6 +505,7 @@
             </div>
         </div>
 
+        <!-- Dashboard -->
         <div id="dashboardMain" class="dashboard-content">
             <button class="logout-button" onclick="logout()">Cerrar Sesión</button>
             <div class="sections-grid">
@@ -442,31 +514,37 @@
                     <h3 class="section-title">Información Eventos</h3>
                     <p class="section-description">Consulta detalles de eventos y documentos por rol</p>
                 </div>
+
                 <div class="section-card fotos" onclick="openPhotosLink()">
                     <span class="section-icon">📸</span>
                     <h3 class="section-title">Bonos Fotos</h3>
                     <p class="section-description">Subir fotos para gestión de bonos del equipo</p>
                 </div>
+
                 <div class="section-card gestion" onclick="openGestionLink()">
                     <span class="section-icon">📊</span>
                     <h3 class="section-title">Control de Gestión</h3>
                     <p class="section-description">Sistema de control y seguimiento de operaciones</p>
                 </div>
+
                 <div class="section-card inscripcion" onclick="openInscripcionLink()">
                     <span class="section-icon">📝</span>
                     <h3 class="section-title">Inscripción datos de pago Trabajador/Proveedor</h3>
                     <p class="section-description">Formulario para registro de datos de pago</p>
                 </div>
+
                 <div class="section-card tinto" onclick="openTintoLink()">
                     <span class="section-icon">📖</span>
                     <h3 class="section-title">Instructivos y Reglas Tinto</h3>
                     <p class="section-description">Documentación y procedimientos para eventos Tinto</p>
                 </div>
+
                 <div class="section-card voda" onclick="openVodaLink()">
                     <span class="section-icon">📚</span>
                     <h3 class="section-title">Instructivos y Reglas Vodaeventos</h3>
                     <p class="section-description">Documentación y procedimientos para Vodaeventos</p>
                 </div>
+
                 <div class="section-card septima" onclick="openSeptimaLink()">
                     <span class="section-icon">💼</span>
                     <h3 class="section-title">Almuerzos Estoril</h3>
@@ -475,12 +553,14 @@
             </div>
         </div>
 
+        <!-- Events Section -->
         <div id="eventsSection" class="events-section">
             <button class="back-button" onclick="showDashboardFromEvents()">← Volver al Dashboard</button>
             <div id="eventsContainer"></div>
         </div>
     </div>
 
+    <!-- Password Modal -->
     <div id="passwordModal" class="password-modal">
         <div class="password-content">
             <h3>Acceso Restringido</h3>
@@ -492,6 +572,7 @@
         </div>
     </div>
 
+    <!-- Documents Modal -->
     <div id="documentsModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">&times;</button>
@@ -504,284 +585,18 @@
     <script>
         const PASSWORD = 'tinto1234';
         let isLoggedIn = false;
-        const eventsData = [
-            {
-                id: 1,
-                tipoEvento: "Matrimonio",
-                salon: "Parque San Rafael",
-                novios: "Camila Palma y Benjamin Portales",
-                fecha: "2025-10-03",
-                genteCoctel: 253,
-                genteComida: 253,
-                genteFiesta: 7,
-                encargadoOficina: "Fernando / Juan Carlos",
-                superMetre: "Pablo",
-                cocineroJefe: "Horte",
-                horarioCitacion: "12:30",
-                horarioTermino: "04:30",
-                horaMisa: "17:30",
-                ceremonia: "en el lugar",
-                socioACargo: "",
-                documents: [
-                    { name: "Minuta", url: "", roles: ["cocina", "supervisor"] },
-                    { name: "Menu", url: "", roles: ["supervisor", "supermetre", "cocina"] },
-                    { name: "Lista de despacho", url: "", roles: ["cocina"] },
-                    { name: "Plano", url: "", roles: ["supervisor", "supermetre"] },
-                    { name: "Elementos casa", url: "", roles: ["supermetre"] },
-                    { name: "Elementos manteleria", url: "", roles: ["supermetre"] },
-                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
-                    { name: "Vajilla", url: "", roles: ["supermetre"] },
-                    { name: "Elementos Bar", url: "", roles: ["supermetre"] },
-                    { name: "Bebestibles", url: "", roles: ["supermetre"] },
-                    { name: "Detalle de montaje", url: "", roles: ["supermetre"] },
-                    { name: "Proporcion Bajon", url: "", roles: ["cocina"] },
-                    { name: "Proporcion coctel", url: "", roles: ["cocina"] },
-                    { name: "Proporcion Comida Personal", url: "", roles: ["cocina"] },
-                    { name: "Proporcion entrada", url: "", roles: ["cocina"] },
-                    { name: "Proporcion PF", url: "", roles: ["cocina"] },
-                    { name: "Elementos postres", url: "", roles: ["cocina"] },
-                    { name: "Casos especiales", url: "", roles: ["cocina", "supermetre"] },
-                    { name: "Puestos por mesa", url: "", roles: ["cocina", "supermetre", "supervisor"] },
-                    { name: "Detalle evento", url: "", roles: ["cocina", "supermetre", "supervisor"] },
-                    { name: "Listas garzones", url: "", roles: ["supermetre", "supervisor"] },
-                    { name: "Tabla copetes", url: "", roles: ["supervisor"] },
-                    { name: "Receta flores", url: "", roles: ["supervisor"] },
-                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
-                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
-                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
-                ]
-            },
-            {
-                id: 2,
-                tipoEvento: "Matrimonio",
-                salon: "Parque Lipangue",
-                novios: "Sofia Muzard y Fernando Alvarez",
-                fecha: "2025-10-03",
-                genteCoctel: 295,
-                genteComida: 295,
-                genteFiesta: 68,
-                encargadoOficina: "Cata F / Fran A",
-                superMetre: "Javi",
-                cocineroJefe: "Edgardo",
-                horarioCitacion: "12:30",
-                horarioTermino: "04:00",
-                horaMisa: "17:30",
-                ceremonia: "Ursulinas",
-                socioACargo: "",
-                documents: [
-                    { name: "Minuta", url: "", roles: ["cocina", "supervisor"] },
-                    { name: "Menu", url: "", roles: ["supervisor", "supermetre", "cocina"] },
-                    { name: "Lista de despacho", url: "", roles: ["cocina"] },
-                    { name: "Plano", url: "", roles: ["supervisor", "supermetre"] },
-                    { name: "Elementos casa", url: "", roles: ["supermetre"] },
-                    { name: "Elementos manteleria", url: "", roles: ["supermetre"] },
-                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
-                    { name: "Vajilla", url: "", roles: ["supermetre"] },
-                    { name: "Elementos Bar", url: "", roles: ["supermetre"] },
-                    { name: "Bebestibles", url: "", roles: ["supermetre"] },
-                    { name: "Detalle de montaje", url: "", roles: ["supermetre"] },
-                    { name: "Proporcion Bajon", url: "", roles: ["cocina"] },
-                    { name: "Proporcion coctel", url: "", roles: ["cocina"] },
-                    { name: "Proporcion Comida Personal", url: "", roles: ["cocina"] },
-                    { name: "Proporcion entrada", url: "", roles: ["cocina"] },
-                    { name: "Proporcion PF", url: "", roles: ["cocina"] },
-                    { name: "Elementos postres", url: "", roles: ["cocina"] },
-                    { name: "Casos especiales", url: "", roles: ["cocina", "supermetre"] },
-                    { name: "Puestos por mesa", url: "", roles: ["cocina", "supermetre", "supervisor"] },
-                    { name: "Detalle evento", url: "", roles: ["cocina", "supermetre", "supervisor"] },
-                    { name: "Listas garzones", url: "", roles: ["supermetre", "supervisor"] },
-                    { name: "Tabla copetes", url: "", roles: ["supervisor"] },
-                    { name: "Receta flores", url: "", roles: ["supervisor"] },
-                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
-                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
-                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
-                ]
-            },
-            {
-                id: 3,
-                tipoEvento: "Matrimonio",
-                salon: "Parque San Rafael",
-                novios: "Florencia Robson y Nicolas Bustamante",
-                fecha: "2025-10-04",
-                genteCoctel: 310,
-                genteComida: 310,
-                genteFiesta: 0,
-                encargadoOficina: "Nene / Juan Carlos",
-                superMetre: "Rodolfo",
-                cocineroJefe: "Horte",
-                horarioCitacion: "12:30",
-                horarioTermino: "04:30",
-                horaMisa: "17:30",
-                ceremonia: "en el lugar",
-                socioACargo: "",
-                documents: [
-                    { name: "Minuta", url: "", roles: ["cocina", "supervisor"] },
-                    { name: "Menu", url: "", roles: ["supervisor", "supermetre", "cocina"] },
-                    { name: "Lista de despacho", url: "", roles: ["cocina"] },
-                    { name: "Plano", url: "", roles: ["supervisor", "supermetre"] },
-                    { name: "Elementos casa", url: "", roles: ["supermetre"] },
-                    { name: "Elementos manteleria", url: "", roles: ["supermetre"] },
-                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
-                    { name: "Vajilla", url: "", roles: ["supermetre"] },
-                    { name: "Elementos Bar", url: "", roles: ["supermetre"] },
-                    { name: "Bebestibles", url: "", roles: ["supermetre"] },
-                    { name: "Detalle de montaje", url: "", roles: ["supermetre"] },
-                    { name: "Proporcion Bajon", url: "", roles: ["cocina"] },
-                    { name: "Proporcion coctel", url: "", roles: ["cocina"] },
-                    { name: "Proporcion Comida Personal", url: "", roles: ["cocina"] },
-                    { name: "Proporcion entrada", url: "", roles: ["cocina"] },
-                    { name: "Proporcion PF", url: "", roles: ["cocina"] },
-                    { name: "Elementos postres", url: "", roles: ["cocina"] },
-                    { name: "Casos especiales", url: "", roles: ["cocina", "supermetre"] },
-                    { name: "Puestos por mesa", url: "", roles: ["cocina", "supermetre", "supervisor"] },
-                    { name: "Detalle evento", url: "", roles: ["cocina", "supermetre", "supervisor"] },
-                    { name: "Listas garzones", url: "", roles: ["supermetre", "supervisor"] },
-                    { name: "Tabla copetes", url: "", roles: ["supervisor"] },
-                    { name: "Receta flores", url: "", roles: ["supervisor"] },
-                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
-                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
-                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
-                ]
-            },
-            {
-                id: 4,
-                tipoEvento: "Matrimonio",
-                salon: "Marmol Club Hipico",
-                novios: "Agustina Solis y Nicolas Cayazzo",
-                fecha: "2025-10-04",
-                genteCoctel: 378,
-                genteComida: 378,
-                genteFiesta: 130,
-                encargadoOficina: "Fernando",
-                superMetre: "Angie",
-                cocineroJefe: "Angelo / Marcelo",
-                horarioCitacion: "12:30",
-                horarioTermino: "04:30",
-                horaMisa: "17:30",
-                ceremonia: "en el lugar",
-                socioACargo: "",
-                documents: [
-                    { name: "Minuta", url: "", roles: ["cocina", "supervisor"] },
-                    { name: "Menu", url: "", roles: ["supervisor", "supermetre", "cocina"] },
-                    { name: "Lista de despacho", url: "", roles: ["cocina"] },
-                    { name: "Plano", url: "", roles: ["supervisor", "supermetre"] },
-                    { name: "Elementos casa", url: "", roles: ["supermetre"] },
-                    { name: "Elementos manteleria", url: "", roles: ["supermetre"] },
-                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
-                    { name: "Vajilla", url: "", roles: ["supermetre"] },
-                    { name: "Elementos Bar", url: "", roles: ["supermetre"] },
-                    { name: "Bebestibles", url: "", roles: ["supermetre"] },
-                    { name: "Detalle de montaje", url: "", roles: ["supermetre"] },
-                    { name: "Proporcion Bajon", url: "", roles: ["cocina"] },
-                    { name: "Proporcion coctel", url: "", roles: ["cocina"] },
-                    { name: "Proporcion Comida Personal", url: "", roles: ["cocina"] },
-                    { name: "Proporcion entrada", url: "", roles: ["cocina"] },
-                    { name: "Proporcion PF", url: "", roles: ["cocina"] },
-                    { name: "Elementos postres", url: "", roles: ["cocina"] },
-                    { name: "Casos especiales", url: "", roles: ["cocina", "supermetre"] },
-                    { name: "Puestos por mesa", url: "", roles: ["cocina", "supermetre", "supervisor"] },
-                    { name: "Detalle evento", url: "", roles: ["cocina", "supermetre", "supervisor"] },
-                    { name: "Listas garzones", url: "", roles: ["supermetre", "supervisor"] },
-                    { name: "Tabla copetes", url: "", roles: ["supervisor"] },
-                    { name: "Receta flores", url: "", roles: ["supervisor"] },
-                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
-                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
-                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
-                ]
-            },
-            {
-                id: 5,
-                tipoEvento: "Matrimonio",
-                salon: "San Miguel de Colina",
-                novios: "Josefina Troncoso y Lucas Buschmann",
-                fecha: "2025-10-04",
-                genteCoctel: 354,
-                genteComida: 354,
-                genteFiesta: 59,
-                encargadoOficina: "Dolores / Berni",
-                superMetre: "Cona",
-                cocineroJefe: "Edgardo",
-                horarioCitacion: "12:00",
-                horarioTermino: "04:00",
-                horaMisa: "17:00",
-                ceremonia: "en el lugar",
-                socioACargo: "",
-                documents: [
-                    { name: "Minuta", url: "", roles: ["cocina", "supervisor"] },
-                    { name: "Menu", url: "", roles: ["supervisor", "supermetre", "cocina"] },
-                    { name: "Lista de despacho", url: "", roles: ["cocina"] },
-                    { name: "Plano", url: "", roles: ["supervisor", "supermetre"] },
-                    { name: "Elementos casa", url: "", roles: ["supermetre"] },
-                    { name: "Elementos manteleria", url: "", roles: ["supermetre"] },
-                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
-                    { name: "Vajilla", url: "", roles: ["supermetre"] },
-                    { name: "Elementos Bar", url: "", roles: ["supermetre"] },
-                    { name: "Bebestibles", url: "", roles: ["supermetre"] },
-                    { name: "Detalle de montaje", url: "", roles: ["supermetre"] },
-                    { name: "Proporcion Bajon", url: "", roles: ["cocina"] },
-                    { name: "Proporcion coctel", url: "", roles: ["cocina"] },
-                    { name: "Proporcion Comida Personal", url: "", roles: ["cocina"] },
-                    { name: "Proporcion entrada", url: "", roles: ["cocina"] },
-                    { name: "Proporcion PF", url: "", roles: ["cocina"] },
-                    { name: "Elementos postres", url: "", roles: ["cocina"] },
-                    { name: "Casos especiales", url: "", roles: ["cocina", "supermetre"] },
-                    { name: "Puestos por mesa", url: "", roles: ["cocina", "supermetre", "supervisor"] },
-                    { name: "Detalle evento", url: "", roles: ["cocina", "supermetre", "supervisor"] },
-                    { name: "Listas garzones", url: "", roles: ["supermetre", "supervisor"] },
-                    { name: "Tabla copetes", url: "", roles: ["supervisor"] },
-                    { name: "Receta flores", url: "", roles: ["supervisor"] },
-                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
-                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
-                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
-                ]
-            },
-            {
-                id: 6,
-                tipoEvento: "Matrimonio",
-                salon: "Campus Oriente",
-                novios: "Tamara Erdmann y Mathias Nielsen",
-                fecha: "2025-10-04",
-                genteCoctel: 291,
-                genteComida: 291,
-                genteFiesta: 61,
-                encargadoOficina: "Maida / Elisa",
-                superMetre: "Tuga",
-                cocineroJefe: "Jose / Estefi",
-                horarioCitacion: "12:30",
-                horarioTermino: "04:00",
-                horaMisa: "17:30",
-                ceremonia: "en el lugar",
-                socioACargo: "",
-                documents: [
-                    { name: "Minuta", url: "", roles: ["cocina", "supervisor"] },
-                    { name: "Menu", url: "", roles: ["supervisor", "supermetre", "cocina"] },
-                    { name: "Lista de despacho", url: "", roles: ["cocina"] },
-                    { name: "Plano", url: "", roles: ["supervisor", "supermetre"] },
-                    { name: "Elementos casa", url: "", roles: ["supermetre"] },
-                    { name: "Elementos manteleria", url: "", roles: ["supermetre"] },
-                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
-                    { name: "Vajilla", url: "", roles: ["supermetre"] },
-                    { name: "Elementos Bar", url: "", roles: ["supermetre"] },
-                    { name: "Bebestibles", url: "", roles: ["supermetre"] },
-                    { name: "Detalle de montaje", url: "", roles: ["supermetre"] },
-                    { name: "Proporcion Bajon", url: "", roles: ["cocina"] },
-                    { name: "Proporcion coctel", url: "", roles: ["cocina"] },
-                    { name: "Proporcion Comida Personal", url: "", roles: ["cocina"] },
-                    { name: "Proporcion entrada", url: "", roles: ["cocina"] },
-                    { name: "Proporcion PF", url: "", roles: ["cocina"] },
-                    { name: "Elementos postres", url: "", roles: ["cocina"] },
-                    { name: "Casos especiales", url: "", roles: ["cocina", "supermetre"] },
-                    { name: "Puestos por mesa", url: "", roles: ["cocina", "supermetre", "supervisor"] },
-                    { name: "Detalle evento", url: "", roles: ["cocina", "supermetre", "supervisor"] },
-                    { name: "Listas garzones", url: "", roles: ["supermetre", "supervisor"] },
-                    { name: "Tabla copetes", url: "", roles: ["supervisor"] },
-                    { name: "Receta flores", url: "", roles: ["supervisor"] },
-                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
-                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
-                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
-                ]
-            }
-        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && document.getElementById('passwordModal').classList.contains('active')) {
+                    verifyPassword();
+                }
+                if (e.key === 'Escape') {
+                    closePasswordModal();
+                    closeModal();
+                }
+            });
+        });
 
         function showPasswordModal() {
             document.getElementById('passwordModal').classList.add('active');
@@ -861,6 +676,190 @@
             if (!isLoggedIn) return;
             window.open('https://script.google.com/macros/s/AKfycbw3-GSJGKZuaKriPj0yep9YsxdxhEpgTbhqqcC5b3KcbJhjrjIyQl7ib6_IdZXlu_G4/exec', '_blank');
         }
+
+        // Complete event data with all documents and roles
+        const eventsData = [
+            {
+                id: 1,
+                tipoEvento:	"Matrimonio",
+                salon:	"Parque San Rafael",
+                fecha:	"2025-09-26",
+                genteCoctel:	315 ,
+                genteComida:	315 ,
+                genteFiesta:	65 ,
+                encargadoOficina:	"Juan Carlos / Fernando",
+                superMetre:	"Pablo",
+                cocineroJefe:	"Angelo / Marcelo",
+                horarioCitacion:	"13:00",
+                horarioTermino:	"04:30",
+                horaMisa:	"18:00",
+                ceremonia:	"En el lugar",
+                socioACargo:	"Manuel",
+                documents: [
+                    { name: "Minuta", url: "https://drive.google.com/file/d/1g8tBIevUlrhzAgZ9e46QafI-LJJWV0D4/view?usp=sharing", roles: ["cocina", "supervisor"] },
+                    { name: "Menu", url: "https://drive.google.com/file/d/1fem62zei1hRqOUoycn5HezQkz0jB1q0d/view?usp=sharing", roles: ["supervisor", "supermetre", "cocina"] },
+                    { name: "Lista de despacho", url: "https://drive.google.com/file/d/1XePG5N0Htw5WRAPx_R1dHexx-Jrp9R4e/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Plano", url: "https://drive.google.com/file/d/1_Lln5KUuHYssRWQsi7vIEOfuI11eOHwU/view?usp=sharing", roles: ["supervisor", "supermetre"] },
+                    { name: "Elementos casa", url: "https://drive.google.com/file/d/1BAKHb9TunakE_TyIXi5TGpbhBXzWbO0f/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Elementos manteleria", url: "https://drive.google.com/file/d/1rKlqd-gFaaw3UmHYyR3NGNUbqGCx6k4J/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
+                    { name: "Vajilla", url: "https://drive.google.com/file/d/1BJJxxSztUVI65L20SmGOUPqyQsB4ggMG/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Elementos Bar", url: "https://drive.google.com/file/d/1MquyBjQKB7BueQAd9__5JRtPMr7M6flX/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Bebestibles", url: "https://drive.google.com/file/d/1G6V4MBXaA2q22QXeIQojq43U9-8xHkUZ/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Detalle de montaje", url: "https://drive.google.com/file/d/1Yr5ODoQ6OZ2TICvIwaU2fMu3KN12Cjzf/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Proporcion Bajon", url: "https://drive.google.com/file/d/1nLiOStYep7MrUMkpQyoI6T1Dolt7b33E/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion coctel", url: "https://drive.google.com/file/d/1WdmGXujcYgHB-OtV55bLsUs6cc53ak7f/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion Comida Personal", url: "https://drive.google.com/file/d/1X-qG525JFMpZPC_1cZMO55QNwm-gHAoT/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion entrada", url: "https://drive.google.com/file/d/1zbfKmh6SLU4ox7oARMZjiSNhkJk6z2v1/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion PF", url: "https://drive.google.com/file/d/1VlrGEG2baNXiNijX_3YCEd_A14YPRUAK/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Elementos postres", url: "https://drive.google.com/file/d/1mtfhbSr7WAQ9028op_Fc3OTpRf8x7v6u/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Casos especiales", url: "https://drive.google.com/file/d/1XRrNqy8ga1ZbkHHFyGWParWLWrQ0z-Er/view?usp=sharing", roles: ["cocina", "supermetre"] },
+                    { name: "Puestos por mesa", url: "https://drive.google.com/file/d/1oVE6FgqbZAhC307Yqbtu0oJRQPrZJnMV/view?usp=sharing", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Detalle evento", url: "https://drive.google.com/file/d/1fSEHcap40t6I9OSR8KAIC0HndpcWNV2s/view?usp=sharing", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Listas garzones", url: "https://drive.google.com/file/d/1EITHvBN_SljMbxOwb78wpVGp7RuKbk1J/view?usp=sharing", roles: ["supermetre", "supervisor"] },
+                    { name: "Tabla copetes", url: "https://drive.google.com/file/d/19fKaz1Z33mFoCYUve1P5SnlKpSd8RuzO/view?usp=sharing", roles: ["supervisor"] },
+                    { name: "Receta flores", url: "https://drive.google.com/file/d/1UA9sl5vyPVGj-Qhq3iG2cPC_fbBTIg-p/view?usp=sharing", roles: ["supervisor"] },
+                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
+                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
+                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
+                ]
+            },
+            {
+                id: 2,
+                tipoEvento:	"Matrimonio",
+                salon:	"Parque San Rafael",
+                fecha:	"2025-09-27",
+                genteCoctel:	284 ,
+                genteComida:	284 ,
+                genteFiesta:	24 ,
+                encargadoOficina:	"Juan Carlos / Tere",
+                superMetre:	"Angi",
+                cocineroJefe:	"Jose /Estefi",
+                horarioCitacion:	"12:00",
+                horarioTermino:	"04:00",
+                horaMisa:	"17:00",
+                ceremonia:	"En el lugar",
+                socioACargo:	"Manuel",
+                documents: [
+                    { name: "Minuta", url: "https://drive.google.com/file/d/1WvdcZPDvUM5Wm0jgphhJhUb6Ud_-rGCv/view?usp=sharing", roles: ["cocina", "supervisor"] },
+                    { name: "Menu", url: "https://drive.google.com/file/d/18xaHaLo3uKShlcyrjLW9n62kaXB_WFY9/view?usp=sharing", roles: ["supervisor", "supermetre", "cocina"] },
+                    { name: "Lista de despacho", url: "https://drive.google.com/file/d/19jNbHd-wleNITcI7jwUXkGRRlMbgmGD-/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Plano", url: "https://drive.google.com/file/d/1-LCrxts22AIXKcNxl3WJ9lFd5R4i0l_d/view?usp=sharing", roles: ["supervisor", "supermetre"] },
+                    { name: "Elementos casa", url: "https://drive.google.com/file/d/1F01coTqtVpcNHsKf5lksFRWGPcKajAoV/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Elementos manteleria", url: "https://drive.google.com/file/d/1GBShULSnTgXvDrMTj2ca6VGPxBcvCta_/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
+                    { name: "Vajilla", url: "https://drive.google.com/file/d/15SK45mxweiUjZ9XS2jQKB8Q4JbjQZvTx/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Elementos Bar", url: "https://drive.google.com/file/d/14nQYKysWRJFXMEhR7dO6fYyH31FVrHs8/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Bebestibles", url: "https://drive.google.com/file/d/1-wb2NvU7gu8Ny9Z9qOhat7HZwrLjp3Zl/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Detalle de montaje", url: "https://drive.google.com/file/d/1r7X98r4qZCiWSfJu5G4tjxAgmPquu2r9/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Proporcion Bajon", url: "https://drive.google.com/file/d/1GsU0m6KC65eqqXJWDPLiN1K5USr7-wfV/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion coctel", url: "https://drive.google.com/file/d/1KQCk2F91wgbInk4w_8rAvySLXWoCZ4PH/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion Comida Personal", url: "https://drive.google.com/file/d/1x97Nsn5VK1Uv13Rb3yOWB7Pw7ijRTaz9/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion entrada", url: "https://drive.google.com/file/d/1BZnopFWlW1f5S6wwbeDLw-iXoRMRf41C/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion PF", url: "https://drive.google.com/file/d/1FzB9cEIVWvghHx5CWDy02UD8NrSQDB_o/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Elementos postres", url: "https://drive.google.com/file/d/1Y04xRcipEEVXNNU4ezmLDlie9Ok5utpX/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Casos especiales", url: "https://drive.google.com/file/d/1a8NjKPEhJl09zDv8VdfR-8P7A4qk3ovt/view?usp=sharing", roles: ["cocina", "supermetre"] },
+                    { name: "Puestos por mesa", url: "https://drive.google.com/file/d/11qiPmk1_9y5jet2Iob70M5ObNI4ZcGQa/view?usp=sharing", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Detalle evento", url: "https://drive.google.com/file/d/1YHCbjcQtIVGBFdiEsGcdjXF5gtHJj6Q1/view?usp=sharing", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Listas garzones", url: "https://drive.google.com/file/d/1hd-0e2OzXrfjgKpHtnJpC6HjT5zKZXVq/view?usp=sharing", roles: ["supermetre", "supervisor"] },
+                    { name: "Tabla copetes", url: "https://drive.google.com/file/d/15g2gfLXNgTJ-w6uAFUguEJQ0EvGze0r2/view?usp=sharing", roles: ["supervisor"] },
+                    { name: "Receta flores", url: "https://drive.google.com/file/d/1IHXjxroIon7fdpky0ofoXvadxwNIlmTH/view?usp=sharing", roles: ["supervisor"] },
+                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
+                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
+                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
+                ]
+            },
+            {
+                id: 3,
+                tipoEvento:	"Matrimonio",
+                salon:	"San Miguel de Colina",
+                fecha:	"2025-09-27",
+                genteCoctel:	287 ,
+                genteComida:	287 ,
+                genteFiesta:	89 ,
+                encargadoOficina:	"Cata F / Cata M / Sofi",
+                superMetre:	"Cona",
+                cocineroJefe:	"Horte",
+                horarioCitacion:	"11:30",
+                horarioTermino:	"03:30",
+                horaMisa:	"16:30",
+                ceremonia:	"En el lugar",
+                socioACargo:	"Manuel",
+                documents: [
+                    { name: "Minuta", url: "https://drive.google.com/file/d/17R-23vLylchhvVqOYggPalemAEvybe7X/view?usp=sharing", roles: ["cocina", "supervisor"] },
+                    { name: "Menu", url: "https://drive.google.com/file/d/1GMyDvAj5GXRnjOU0PEeycgX96QjZcstN/view?usp=sharing", roles: ["supervisor", "supermetre", "cocina"] },
+                    { name: "Lista de despacho", url: "https://drive.google.com/file/d/1EHPEAyMc3fQGIuuKR8j55keZYnr6TxzG/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Plano", url: "https://drive.google.com/file/d/1InxyBN8yy7zdPac2HQW-Jp8KbG0Ctxn9/view?usp=sharing", roles: ["supervisor", "supermetre"] },
+                    { name: "Elementos casa", url: "https://drive.google.com/file/d/1XFxLRe8yMBRQALAf5DKYmg7XEis36oMP/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Elementos manteleria", url: "https://drive.google.com/file/d/10BEuheFobEVFIPuwoEtQs86PYaIBA7t0/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
+                    { name: "Vajilla", url: "https://drive.google.com/file/d/1QD5xFh18fwslpdoRzkY4NGlAx_N4wnHd/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Elementos Bar", url: "https://drive.google.com/file/d/1kts1ul3vmueZ4ilK1vJzehOWzPO4hTd0/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Bebestibles", url: "https://drive.google.com/file/d/1-WKjQKmcQEPXqAzL0QoN37bQ8laItW-F/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Detalle de montaje", url: "https://drive.google.com/file/d/1olURoofeamnG70TfMpJcyBe49IOsI7ue/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Proporcion Bajon", url: "https://drive.google.com/file/d/1hasttxgd_Lb4hR15ObyGjRhn6srF0HVg/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion coctel", url: "https://drive.google.com/file/d/1YaQeK7MahfcCrQjQ3tx2rxeojVSzOKmh/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion Comida Personal", url: "https://drive.google.com/file/d/1P2u7rRgu-uBu7-LTDIQjQ7KsmrrviOR2/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion entrada", url: "https://drive.google.com/file/d/1iRmpIgGDeGJDvgLewGpcvaGR72RdjFRh/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion PF", url: "https://drive.google.com/file/d/1--gSpFo3Y3_SLf3KlpVzgr7RsK-nkQD4/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Elementos postres", url: "https://drive.google.com/file/d/1823NqMBfd3rKefq12gb9MbwSQZTy8932/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Casos especiales", url: "https://drive.google.com/file/d/1o3QjkQHmVu1uS1QZMrZ91M9vQ7bRazQk/view?usp=sharing", roles: ["cocina", "supermetre"] },
+                    { name: "Puestos por mesa", url: "https://drive.google.com/file/d/1_d2IsPmUwgxsVMS_CA4TWtywuZVYsaX3/view?usp=sharing", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Detalle evento", url: "https://drive.google.com/file/d/1eut_0od9S5rSbLIY3aXMDv5q5dR5ZDcz/view?usp=sharing", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Listas garzones", url: "https://drive.google.com/file/d/1x7Zft0gAEAvvNYdXIPcX-grfNcTbVjQk/view?usp=sharing", roles: ["supermetre", "supervisor"] },
+                    { name: "Tabla copetes", url: "https://drive.google.com/file/d/1CZaKGSKgFvzpWBKq4xP6idE8BYZD2_Xz/view?usp=sharing", roles: ["supervisor"] },
+                    { name: "Receta flores", url: "https://drive.google.com/file/d/1vOQWo3f-lm3n9GIcTbIJ64vZLmODtII1/view?usp=sharing", roles: ["supervisor"] },
+                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
+                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
+                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
+                ]
+            },
+            {
+                id: 4,
+                tipoEvento:	"Matrimonio",
+                salon:	"Campus Oriente",
+                fecha:	"2025-09-27",
+                genteCoctel:	256 ,
+                genteComida:	256 ,
+                genteFiesta:	0 ,
+                encargadoOficina:	"Fran / Domi",
+                superMetre:	"Tuga",
+                cocineroJefe:	"Edgardo",
+                horarioCitacion:	"12:00",
+                horarioTermino:	"04:00",
+                horaMisa:	"17:00",
+                ceremonia:	"En el lugar",
+                socioACargo:	"Manuel",
+                documents: [
+                    { name: "Minuta", url: "https://drive.google.com/file/d/18rH1shJac0C8JL68_ERcMwu4joxHUr1P/view?usp=sharing", roles: ["cocina", "supervisor"] },
+                    { name: "Menu", url: "https://drive.google.com/file/d/1SLoa6_D_lLZgSnohBQWPo-C8D7w4ZhsG/view?usp=sharing", roles: ["supervisor", "supermetre", "cocina"] },
+                    { name: "Lista de despacho", url: "https://drive.google.com/file/d/1YqTyhAQz4QrLsHnxopFol1L2l9UZDu2Z/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Plano", url: "https://drive.google.com/file/d/1o1_p7bR1SQ-VvGEMxHmw7EgzpiWGtcoV/view?usp=sharing", roles: ["supervisor", "supermetre"] },
+                    { name: "Elementos casa", url: "https://drive.google.com/file/d/1plDab6CyWbAigfHZGiXfW-zS_jYrdDS8/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Elementos manteleria", url: "https://drive.google.com/file/d/1lfY2ewCUfdeXuLlytSXtw9yYC7FfWzb5/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
+                    { name: "Vajilla", url: "https://drive.google.com/file/d/1JOnSF6Ep9o2Ra9YV_Cu0Oy8y8zvAAWBK/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Elementos Bar", url: "https://drive.google.com/file/d/1KKFm4SS2MxWNTQLkSSYxwsARjj-_CpNI/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Bebestibles", url: "https://drive.google.com/file/d/1XDKJx-MohpyonO0vzTboP11DPYVYCXuy/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Detalle de montaje", url: "https://drive.google.com/file/d/17OrkIhG_jazVUTReii1xxWnvA7_qUDNU/view?usp=sharing", roles: ["supermetre"] },
+                    { name: "Proporcion Bajon", url: "https://drive.google.com/file/d/11NamyVm6ohbJDtMNeP6TxPYb9AIugFfR/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion coctel", url: "https://drive.google.com/file/d/1954eMQpfYkBBzivbUyY2fy0k7xY8xKrv/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion Comida Personal", url: "https://drive.google.com/file/d/1fmswqCokD7PQMM-XXFWT1UrTrD6i6U8V/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion entrada", url: "https://drive.google.com/file/d/1ahhHCJ4E6jmn25NYZVTimLLXYzxCi4ZY/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Proporcion PF", url: "https://drive.google.com/file/d/1etmFCgilKL4-joKWez1r4MtfvizBCk9c/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Elementos postres", url: "https://drive.google.com/file/d/18HBRrVD4DDVFb0GwQvO0NWDLkSlw0Slu/view?usp=sharing", roles: ["cocina"] },
+                    { name: "Casos especiales", url: "https://drive.google.com/file/d/1TFcxnrcQui7ijgp0InJw0cO0MGgJZnuw/view?usp=sharing", roles: ["cocina", "supermetre"] },
+                    { name: "Puestos por mesa", url: "https://drive.google.com/file/d/1xJkCdRCm6MS3dWKRabAW2qKIULRiYYww/view?usp=sharing", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Detalle evento", url: "https://drive.google.com/file/d/1ppyd0QCAOwUKn5dbeMvdhBHY0Z0RnQp9/view?usp=sharing", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Listas garzones", url: "https://drive.google.com/file/d/1PicMc3llfeh2gFARvrf4wdqfjmosFPDB/view?usp=sharing", roles: ["supermetre", "supervisor"] },
+                    { name: "Tabla copetes", url: "https://drive.google.com/file/d/1hn8jq_Q7M8tn_6gMYcrNCdVEhrWNFvrq/view?usp=sharing", roles: ["supervisor"] },
+                    { name: "Receta flores", url: "https://drive.google.com/file/d/10JXXyfF46FN0zjtDD-kbyASpTtxxmh_A/view?usp=sharing", roles: ["supervisor"] },
+                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
+                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
+                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
+                ]
+            }
+        ];
 
         function displayEvents() {
             const container = document.getElementById('eventsContainer');
@@ -950,23 +949,9 @@
                     day: 'numeric' 
                 });
             } catch (e) {
-                return
                 return dateString;
             }
         }
-
-        // Event listeners para teclado
-        document.addEventListener('DOMContentLoaded', function() {
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && document.getElementById('passwordModal').classList.contains('active')) {
-                    verifyPassword();
-                }
-                if (e.key === 'Escape') {
-                    closePasswordModal();
-                    closeModal();
-                }
-            });
-        });
     </script>
 </body>
 </html>
