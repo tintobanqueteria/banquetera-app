@@ -182,147 +182,120 @@
             background: white;
             border: 3px solid #333;
             border-radius: 20px;
-            padding: 25px 20px;
+            padding: 30px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .section-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
         .section-icon {
             font-size: 3em;
-            margin-bottom: 12px;
-            display: block;
+            margin-bottom: 15px;
         }
 
-        .section-title {
-            font-size: 1.2em;
-            font-weight: bold;
+        .section-card h3 {
             color: #333;
+            font-size: 1.4em;
             margin-bottom: 10px;
-            line-height: 1.3;
         }
 
-        .section-description {
+        .section-card p {
             color: #666;
-            font-size: 0.9em;
-            line-height: 1.4;
         }
 
-        .section-card.eventos { background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%); }
-        .section-card.fotos { background: linear-gradient(135deg, #fff 0%, #e3f2fd 100%); }
-        .section-card.gestion { background: linear-gradient(135deg, #fff 0%, #f3e5f5 100%); }
-        .section-card.inscripcion { background: linear-gradient(135deg, #fff 0%, #e8f5e8 100%); }
-        .section-card.tinto { background: linear-gradient(135deg, #fff 0%, #fff3cd 100%); }
-        .section-card.voda { background: linear-gradient(135deg, #fff 0%, #fce4ec 100%); }
-        .section-card.septima { background: linear-gradient(135deg, #fff 0%, #e8f4f8 100%); }
-
-        /* Events Section */
-        .events-section {
-            display: none;
-            padding: 30px 20px;
-        }
-
-        .back-button {
-            background: #333;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-bottom: 25px;
-        }
-
-        .back-button:hover {
-            background: #000;
+        /* Events Container */
+        #eventsContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
         .event-card {
             background: white;
-            border: 2px solid #333;
+            border: 3px solid #333;
             border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .event-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #f1f3f4;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #333;
         }
 
         .event-title {
-            font-size: 1.3em;
+            font-size: 1.8em;
             font-weight: bold;
+            color: #333;
         }
 
         .event-date {
-            background: #333;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.9em;
+            font-size: 1.2em;
+            color: #666;
+            font-weight: 600;
         }
 
         .detail-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 6px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .detail-item {
             display: flex;
             justify-content: space-between;
-            padding: 4px 0;
-            border-bottom: 1px solid #e9ecef;
-            font-size: 0.85em;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
         }
 
         .detail-item span:first-child {
             font-weight: 600;
-            color: #495057;
+            color: #333;
         }
 
         .detail-item span:last-child {
-            color: #6c757d;
-            text-align: right;
-            max-width: 60%;
+            color: #666;
         }
 
         .roles-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         .role-button {
-            background: white;
-            border: 2px solid #333;
-            padding: 15px 10px;
+            background: linear-gradient(135deg, #333, #555);
+            color: white;
+            padding: 20px;
             border-radius: 15px;
             cursor: pointer;
+            transition: all 0.3s ease;
             text-align: center;
             font-weight: bold;
-            transition: all 0.3s ease;
-            font-size: 0.9em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .role-button:hover {
-            background: #333;
-            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #000, #333);
         }
 
-        /* Modal */
-        .modal {
+        /* Documents Modal */
+        .documents-modal {
             display: none;
             position: fixed;
             top: 0;
@@ -336,7 +309,7 @@
             padding: 20px;
         }
 
-        .modal.active {
+        .documents-modal.active {
             display: flex;
         }
 
@@ -349,16 +322,52 @@
             max-height: 80vh;
             overflow-y: auto;
             position: relative;
+            border: 3px solid #333;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #333;
+        }
+
+        .modal-header h2 {
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .modal-header p {
+            color: #666;
+            font-size: 0.95em;
         }
 
         .close-btn {
             position: absolute;
             top: 15px;
             right: 20px;
-            background: none;
+            background: #dc3545;
+            color: white;
             border: none;
-            font-size: 1.8em;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
             cursor: pointer;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .close-btn:hover {
+            background: #c82333;
+        }
+
+        .documents-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .document-item {
@@ -367,124 +376,61 @@
             align-items: center;
             padding: 15px;
             background: #f8f9fa;
-            border-radius: 15px;
-            margin-bottom: 12px;
-            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            border: 2px solid #dee2e6;
         }
 
         .document-item h4 {
             margin: 5px 0;
-            font-size: 1em;
-        }
-
-        .view-btn, .pending-status {
-            border: none;
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.9em;
+            color: #333;
         }
 
         .view-btn {
             background: #333;
             color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .view-btn:hover {
+            background: #000;
         }
 
         .pending-status {
             background: #ffc107;
-            color: #212529;
-            cursor: default;
+            color: #333;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: not-allowed;
+            white-space: nowrap;
         }
 
-        /* Mobile Responsive */
         @media (max-width: 768px) {
-            body {
-                padding: 5px;
-            }
-            
-            .header {
-                padding: 25px 15px;
-            }
-            
             .header h1 {
-                font-size: 2em;
+                font-size: 1.8em;
             }
-            
-            .dashboard-content {
-                padding: 25px 15px;
-            }
-            
-            .events-section {
-                padding: 20px 15px;
-            }
-            
-            .sections-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .section-card {
-                padding: 20px 15px;
-            }
-            
-            .section-title {
-                font-size: 1.1em;
-            }
-            
-            .section-icon {
-                font-size: 2.5em;
-            }
-            
+
             .roles-container {
                 grid-template-columns: 1fr;
-                gap: 10px;
             }
-            
-            .role-button {
-                padding: 12px;
-            }
-            
+
             .detail-grid {
-                font-size: 0.8em;
+                grid-template-columns: 1fr;
             }
-            
+
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
+
             .event-header {
                 flex-direction: column;
-                align-items: flex-start;
                 gap: 10px;
-            }
-            
-            .modal-content {
-                padding: 20px;
-                margin: 10px;
-            }
-            
-            .password-content {
-                padding: 25px 20px;
-                margin: 0 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 1.8em;
-            }
-            
-            .login-content h2 {
-                font-size: 1.8em;
-            }
-            
-            .section-icon {
-                font-size: 2.2em;
-            }
-            
-            .section-title {
-                font-size: 1em;
-            }
-            
-            .section-description {
-                font-size: 0.85em;
             }
         }
     </style>
@@ -492,208 +438,125 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Dashboard Grupo Pioneros</h1>
-            <p>Sistema de gestión integral</p>
+            <h1>🏛️ GRUPO PIONEROS</h1>
+            <p>Organización de Eventos de Excelencia</p>
         </div>
 
         <!-- Login Screen -->
-        <div id="loginScreen" class="login-screen">
+        <div class="login-screen" id="loginScreen">
             <div class="login-content">
-                <h2>Bienvenido</h2>
-                <p>Accede al panel de control del equipo</p>
-                <button class="login-btn" onclick="showPasswordModal()">INGRESAR</button>
+                <h2>👋 Bienvenido</h2>
+                <p>Por favor, ingresa para ver los eventos</p>
+                <button class="login-btn" onclick="showPasswordModal()">Ingresar</button>
             </div>
         </div>
 
-        <!-- Dashboard -->
-        <div id="dashboardMain" class="dashboard-content">
+        <!-- Password Modal -->
+        <div class="password-modal" id="passwordModal">
+            <div class="password-content">
+                <h3>🔐 Ingresa la contraseña</h3>
+                <input type="password" 
+                       class="password-input" 
+                       id="passwordInput" 
+                       placeholder="Contraseña"
+                       onkeypress="if(event.key === 'Enter') checkPassword()">
+                <div>
+                    <button class="password-btn" onclick="checkPassword()">Confirmar</button>
+                    <button class="password-btn" onclick="closePasswordModal()">Cancelar</button>
+                </div>
+                <div class="error-message" id="errorMessage">Contraseña incorrecta</div>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content" id="dashboardContent">
             <button class="logout-button" onclick="logout()">Cerrar Sesión</button>
+            
             <div class="sections-grid">
-                <div class="section-card eventos" onclick="showEventsSection()">
-                    <span class="section-icon">📅</span>
-                    <h3 class="section-title">Información Eventos</h3>
-                    <p class="section-description">Consulta detalles de eventos y documentos por rol</p>
-                </div>
-
-                <div class="section-card fotos" onclick="openPhotosLink()">
-                    <span class="section-icon">📸</span>
-                    <h3 class="section-title">Bonos Fotos</h3>
-                    <p class="section-description">Subir fotos para gestión de bonos del equipo</p>
-                </div>
-
-                <div class="section-card gestion" onclick="openGestionLink()">
-                    <span class="section-icon">📊</span>
-                    <h3 class="section-title">Control de Gestión</h3>
-                    <p class="section-description">Sistema de control y seguimiento de operaciones</p>
-                </div>
-
-                <div class="section-card inscripcion" onclick="openInscripcionLink()">
-                    <span class="section-icon">📝</span>
-                    <h3 class="section-title">Inscripción datos de pago Trabajador/Proveedor</h3>
-                    <p class="section-description">Formulario para registro de datos de pago</p>
-                </div>
-
-                <div class="section-card tinto" onclick="openTintoLink()">
-                    <span class="section-icon">📖</span>
-                    <h3 class="section-title">Instructivos y Reglas Tinto</h3>
-                    <p class="section-description">Documentación y procedimientos para eventos Tinto</p>
-                </div>
-
-                <div class="section-card voda" onclick="openVodaLink()">
-                    <span class="section-icon">📚</span>
-                    <h3 class="section-title">Instructivos y Reglas Vodaeventos</h3>
-                    <p class="section-description">Documentación y procedimientos para Vodaeventos</p>
-                </div>
-
-                <div class="section-card septima" onclick="openSeptimaLink()">
-                    <span class="section-icon">💼</span>
-                    <h3 class="section-title">Almuerzos Estoril</h3>
-                    <p class="section-description">Sistema de control cantidad de personas por área</p>
+                <div class="section-card" onclick="showSection('eventos')">
+                    <div class="section-icon">📅</div>
+                    <h3>Eventos</h3>
+                    <p>Ver próximos eventos y detalles</p>
                 </div>
             </div>
-        </div>
 
-        <!-- Events Section -->
-        <div id="eventsSection" class="events-section">
-            <button class="back-button" onclick="showDashboardFromEvents()">← Volver al Dashboard</button>
-            <div id="eventsContainer"></div>
-        </div>
-    </div>
-
-    <!-- Password Modal -->
-    <div id="passwordModal" class="password-modal">
-        <div class="password-content">
-            <h3>Acceso Restringido</h3>
-            <p>Ingresa la contraseña para acceder al sistema</p>
-            <input type="password" id="passwordInput" class="password-input" placeholder="Contraseña">
-            <div class="error-message" id="errorMessage">Contraseña incorrecta</div>
-            <button class="password-btn" onclick="closePasswordModal()">Cancelar</button>
-            <button class="password-btn" onclick="verifyPassword()">Acceder</button>
+            <div id="eventsContainer" style="margin-top: 40px;"></div>
         </div>
     </div>
 
     <!-- Documents Modal -->
-    <div id="documentsModal" class="modal">
+    <div class="documents-modal" id="documentsModal">
         <div class="modal-content">
-            <button class="close-btn" onclick="closeModal()">&times;</button>
-            <div id="modalTitle" style="font-size: 1.8em; margin-bottom: 10px; text-align: center; font-weight: bold;"></div>
-            <div id="modalSubtitle" style="color: #666; text-align: center; margin-bottom: 25px;"></div>
-            <div id="modalDocuments"></div>
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <p id="modalSubtitle"></p>
+            </div>
+            <div class="documents-list" id="modalDocuments"></div>
         </div>
     </div>
 
     <script>
-        const PASSWORD = 'tinto1234';
-        let isLoggedIn = false;
+        const CORRECT_PASSWORD = "pioneros2024";
 
-        document.addEventListener('DOMContentLoaded', function() {
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && document.getElementById('passwordModal').classList.contains('active')) {
-                    verifyPassword();
-                }
-                if (e.key === 'Escape') {
-                    closePasswordModal();
-                    closeModal();
-                }
-            });
-        });
-
+        // Funciones de Login
         function showPasswordModal() {
             document.getElementById('passwordModal').classList.add('active');
             document.getElementById('passwordInput').focus();
-            document.getElementById('errorMessage').style.display = 'none';
-            document.getElementById('passwordInput').value = '';
         }
 
         function closePasswordModal() {
             document.getElementById('passwordModal').classList.remove('active');
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('errorMessage').style.display = 'none';
         }
 
-        function verifyPassword() {
-            const inputPassword = document.getElementById('passwordInput').value;
-            if (inputPassword === PASSWORD) {
-                isLoggedIn = true;
-                closePasswordModal();
-                showDashboard();
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            
+            if (password === CORRECT_PASSWORD) {
+                // Login exitoso
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('passwordModal').classList.remove('active');
+                document.getElementById('dashboardContent').style.display = 'block';
+                displayEvents();
             } else {
+                // Contraseña incorrecta
                 document.getElementById('errorMessage').style.display = 'block';
                 document.getElementById('passwordInput').value = '';
                 document.getElementById('passwordInput').focus();
             }
         }
 
-        function showDashboard() {
-            document.getElementById('loginScreen').style.display = 'none';
-            document.getElementById('dashboardMain').style.display = 'block';
-            document.getElementById('eventsSection').style.display = 'none';
-        }
-
         function logout() {
-            isLoggedIn = false;
-            document.getElementById('dashboardMain').style.display = 'none';
-            document.getElementById('eventsSection').style.display = 'none';
             document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('dashboardContent').style.display = 'none';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('errorMessage').style.display = 'none';
         }
 
-        function showEventsSection() {
-            if (!isLoggedIn) return;
-            document.getElementById('dashboardMain').style.display = 'none';
-            document.getElementById('eventsSection').style.display = 'block';
-            displayEvents();
+        function showSection(section) {
+            if (section === 'eventos') {
+                displayEvents();
+            }
         }
 
-        function showDashboardFromEvents() {
-            document.getElementById('eventsSection').style.display = 'none';
-            document.getElementById('dashboardMain').style.display = 'block';
-        }
-
-        function openPhotosLink() {
-            if (!isLoggedIn) return;
-            window.open('https://script.google.com/macros/s/AKfycby6KPm1npHEUjfTE8fm7CL5sNpPnOxXKM4-w3wARk2iWehNTeGM5L-oxGYdU6LxsIIJRQ/exec', '_blank');
-        }
-
-        function openGestionLink() {
-            if (!isLoggedIn) return;
-            window.open('https://script.google.com/macros/s/AKfycbxkQ8F2eQrFgilLka9n3if7U7q3JJtcL_ZAfkCkWrN-87xJevC4XL9GyQ7uJG6RtnBT/exec', '_blank');
-        }
-
-        function openInscripcionLink() {
-            if (!isLoggedIn) return;
-            window.open('https://forms.gle/xghpUJLmWqfJvMF48', '_blank');
-        }
-
-        function openTintoLink() {
-            if (!isLoggedIn) return;
-            window.open('https://faceted-aunt-dc4.notion.site/Estructura-Matrimonios-11c8dfda460980e49634cc8cfde77203', '_blank');
-        }
-
-        function openVodaLink() {
-            if (!isLoggedIn) return;
-            window.open('https://faceted-aunt-dc4.notion.site/Estructura-VE-14d8dfda4609800a8d4be658c6b9fab6?pvs=74', '_blank');
-        }
-
-        function openSeptimaLink() {
-            if (!isLoggedIn) return;
-            window.open('https://script.google.com/macros/s/AKfycbw3-GSJGKZuaKriPj0yep9YsxdxhEpgTbhqqcC5b3KcbJhjrjIyQl7ib6_IdZXlu_G4/exec', '_blank');
-        }
-
-        // Complete event data with all documents and roles
         const eventsData = [
             {
                 id: 1,
-                tipoEvento:	"Corporativo",
-                salon:	"Los Leones",
-                novios:	"",
-                fecha:	"2025-10-24",
-                genteCoctel:	1200 ,
-                genteComida:	1200 ,
-                genteFiesta:	 ,
-                encargadoOficina:	"Team Comercial",
-                superMetre:	"Rodolfo/Angi",
-                cocineroJefe:	"Edgardo/Jos/Estefi",
-                horarioCitacion:	"00:00",
-                horarioTermino:	"15:30",
-                horaMisa:	"12:30",
+                tipoEvento:	"Matrimonio en hogar",
+                salon:	"Simón bolívar 3255, Ñuñoa",
+                novios:	"Mateo Plass y Maria Jesus Silva",
+                fecha:	"2025-10-18",
+                genteCoctel:	160 ,
+                genteComida:	160 ,
+                genteFiesta:	15 ,
+                encargadoOficina:	"Cata M/Domi",
+                superMetre:	"Pablo",
+                cocineroJefe:	"Camila",
+                horarioCitacion:	"16:00",
+                horarioTermino:	"04:00",
+                horaMisa:	"20:30",
                 ceremonia:	"en el lugar",
                 socioACargo:	"",
                 documents: [
@@ -727,15 +590,245 @@
             },
             {
                 id: 2,
-                tipoEvento:	"Matrimonio",
-                salon:	"Casa Arboleda",
-                novios:	"Rosario Aspillaga y Vicente del Rio",
+                tipoEvento:	"Matrimonio en hogar",
+                salon:	"Cristobal de Aguilar 0525, Las Condes",
+                novios:	"Laura Guerra y Eduardo Zucchet",
+                fecha:	"2025-10-18",
+                genteCoctel:	125 ,
+                genteComida:	125 ,
+                genteFiesta:	0 ,
+                encargadoOficina:	"Rosario",
+                superMetre:	"Andrea",
+                cocineroJefe:	"Angelo/Marcelo",
+                horarioCitacion:	"14:30",
+                horarioTermino:	"03:00",
+                horaMisa:	"20:00",
+                ceremonia:	"en el lugar",
+                socioACargo:	"Nico",
+                documents: [
+                    { name: "Minuta", url: "", roles: ["cocina", "supervisor"] },
+                    { name: "Menu", url: "", roles: ["supervisor", "supermetre", "cocina"] },
+                    { name: "Lista de despacho", url: "", roles: ["cocina"] },
+                    { name: "Plano", url: "", roles: ["supervisor", "supermetre"] },
+                    { name: "Elementos casa", url: "", roles: ["supermetre"] },
+                    { name: "Elementos manteleria", url: "", roles: ["supermetre"] },
+                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
+                    { name: "Vajilla", url: "", roles: ["supermetre"] },
+                    { name: "Elementos Bar", url: "", roles: ["supermetre"] },
+                    { name: "Bebestibles", url: "", roles: ["supermetre"] },
+                    { name: "Detalle de montaje", url: "", roles: ["supermetre"] },
+                    { name: "Proporcion Bajon", url: "", roles: ["cocina"] },
+                    { name: "Proporcion coctel", url: "", roles: ["cocina"] },
+                    { name: "Proporcion Comida Personal", url: "", roles: ["cocina"] },
+                    { name: "Proporcion entrada", url: "", roles: ["cocina"] },
+                    { name: "Proporcion PF", url: "", roles: ["cocina"] },
+                    { name: "Elementos postres", url: "", roles: ["cocina"] },
+                    { name: "Casos especiales", url: "", roles: ["cocina", "supermetre"] },
+                    { name: "Puestos por mesa", url: "", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Detalle evento", url: "", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Listas garzones", url: "", roles: ["supermetre", "supervisor"] },
+                    { name: "Tabla copetes", url: "", roles: ["supervisor"] },
+                    { name: "Receta flores", url: "", roles: ["supervisor"] },
+                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
+                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
+                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
+                ]
+            },
+            {
+                id: 3,
+                tipoEvento:	"Matrimonio en hogar",
+                salon:	"Av. Los Pastores 5655, La Reina",
+                novios:	"Gustavo santelices y Catalina Errazuriz",
+                fecha:	"2025-10-19",
+                genteCoctel:	250 ,
+                genteComida:	250 ,
+                genteFiesta:	15 ,
+                encargadoOficina:	"María José",
+                superMetre:	"Coni V",
+                cocineroJefe:	"Camila",
+                horarioCitacion:	"13:00",
+                horarioTermino:	"04:00",
+                horaMisa:	"18:00",
+                ceremonia:	"en el lugar",
+                socioACargo:	"Felipe",
+                documents: [
+                    { name: "Minuta", url: "", roles: ["cocina", "supervisor"] },
+                    { name: "Menu", url: "", roles: ["supervisor", "supermetre", "cocina"] },
+                    { name: "Lista de despacho", url: "", roles: ["cocina"] },
+                    { name: "Plano", url: "", roles: ["supervisor", "supermetre"] },
+                    { name: "Elementos casa", url: "", roles: ["supermetre"] },
+                    { name: "Elementos manteleria", url: "", roles: ["supermetre"] },
+                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
+                    { name: "Vajilla", url: "", roles: ["supermetre"] },
+                    { name: "Elementos Bar", url: "", roles: ["supermetre"] },
+                    { name: "Bebestibles", url: "", roles: ["supermetre"] },
+                    { name: "Detalle de montaje", url: "", roles: ["supermetre"] },
+                    { name: "Proporcion Bajon", url: "", roles: ["cocina"] },
+                    { name: "Proporcion coctel", url: "", roles: ["cocina"] },
+                    { name: "Proporcion Comida Personal", url: "", roles: ["cocina"] },
+                    { name: "Proporcion entrada", url: "", roles: ["cocina"] },
+                    { name: "Proporcion PF", url: "", roles: ["cocina"] },
+                    { name: "Elementos postres", url: "", roles: ["cocina"] },
+                    { name: "Casos especiales", url: "", roles: ["cocina", "supermetre"] },
+                    { name: "Puestos por mesa", url: "", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Detalle evento", url: "", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Listas garzones", url: "", roles: ["supermetre", "supervisor"] },
+                    { name: "Tabla copetes", url: "", roles: ["supervisor"] },
+                    { name: "Receta flores", url: "", roles: ["supervisor"] },
+                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
+                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
+                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
+                ]
+            },
+            {
+                id: 4,
+                tipoEvento:	"Matrimonio en hogar",
+                salon:	"Clemente Fabian 9280, La Reina",
+                novios:	"Nicolás ossa y Mane García",
+                fecha:	"2025-10-19",
+                genteCoctel:	115 ,
+                genteComida:	115 ,
+                genteFiesta:	0 ,
+                encargadoOficina:	"Rosario",
+                superMetre:	"Rodrigo",
+                cocineroJefe:	"Edgardo",
+                horarioCitacion:	"16:30",
+                horarioTermino:	"04:00",
+                horaMisa:	"20:30",
+                ceremonia:	"en el lugar",
+                socioACargo:	"",
+                documents: [
+                    { name: "Minuta", url: "", roles: ["cocina", "supervisor"] },
+                    { name: "Menu", url: "", roles: ["supervisor", "supermetre", "cocina"] },
+                    { name: "Lista de despacho", url: "", roles: ["cocina"] },
+                    { name: "Plano", url: "", roles: ["supervisor", "supermetre"] },
+                    { name: "Elementos casa", url: "", roles: ["supermetre"] },
+                    { name: "Elementos manteleria", url: "", roles: ["supermetre"] },
+                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
+                    { name: "Vajilla", url: "", roles: ["supermetre"] },
+                    { name: "Elementos Bar", url: "", roles: ["supermetre"] },
+                    { name: "Bebestibles", url: "", roles: ["supermetre"] },
+                    { name: "Detalle de montaje", url: "", roles: ["supermetre"] },
+                    { name: "Proporcion Bajon", url: "", roles: ["cocina"] },
+                    { name: "Proporcion coctel", url: "", roles: ["cocina"] },
+                    { name: "Proporcion Comida Personal", url: "", roles: ["cocina"] },
+                    { name: "Proporcion entrada", url: "", roles: ["cocina"] },
+                    { name: "Proporcion PF", url: "", roles: ["cocina"] },
+                    { name: "Elementos postres", url: "", roles: ["cocina"] },
+                    { name: "Casos especiales", url: "", roles: ["cocina", "supermetre"] },
+                    { name: "Puestos por mesa", url: "", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Detalle evento", url: "", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Listas garzones", url: "", roles: ["supermetre", "supervisor"] },
+                    { name: "Tabla copetes", url: "", roles: ["supervisor"] },
+                    { name: "Receta flores", url: "", roles: ["supervisor"] },
+                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
+                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
+                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
+                ]
+            },
+            {
+                id: 5,
+                tipoEvento:	"Matrimonio Salon",
+                salon:	"La Piedad",
+                novios:	"Gonzalo vernet y Camila aldunate",
                 fecha:	"2025-10-24",
-                genteCoctel:	325 ,
-                genteComida:	325 ,
-                genteFiesta:	126 ,
-                encargadoOficina:	"Dolores/Domi",
-                superMetre:	"Javi",
+                genteCoctel:	275 ,
+                genteComida:	275 ,
+                genteFiesta:	25 ,
+                encargadoOficina:	"Paula",
+                superMetre:	"Rodrigo",
+                cocineroJefe:	"Edgardo",
+                horarioCitacion:	"13:00",
+                horarioTermino:	"04:00",
+                horaMisa:	"18:30",
+                ceremonia:	"en otro lugar",
+                socioACargo:	"",
+                documents: [
+                    { name: "Minuta", url: "", roles: ["cocina", "supervisor"] },
+                    { name: "Menu", url: "", roles: ["supervisor", "supermetre", "cocina"] },
+                    { name: "Lista de despacho", url: "", roles: ["cocina"] },
+                    { name: "Plano", url: "", roles: ["supervisor", "supermetre"] },
+                    { name: "Elementos casa", url: "", roles: ["supermetre"] },
+                    { name: "Elementos manteleria", url: "", roles: ["supermetre"] },
+                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
+                    { name: "Vajilla", url: "", roles: ["supermetre"] },
+                    { name: "Elementos Bar", url: "", roles: ["supermetre"] },
+                    { name: "Bebestibles", url: "", roles: ["supermetre"] },
+                    { name: "Detalle de montaje", url: "", roles: ["supermetre"] },
+                    { name: "Proporcion Bajon", url: "", roles: ["cocina"] },
+                    { name: "Proporcion coctel", url: "", roles: ["cocina"] },
+                    { name: "Proporcion Comida Personal", url: "", roles: ["cocina"] },
+                    { name: "Proporcion entrada", url: "", roles: ["cocina"] },
+                    { name: "Proporcion PF", url: "", roles: ["cocina"] },
+                    { name: "Elementos postres", url: "", roles: ["cocina"] },
+                    { name: "Casos especiales", url: "", roles: ["cocina", "supermetre"] },
+                    { name: "Puestos por mesa", url: "", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Detalle evento", url: "", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Listas garzones", url: "", roles: ["supermetre", "supervisor"] },
+                    { name: "Tabla copetes", url: "", roles: ["supervisor"] },
+                    { name: "Receta flores", url: "", roles: ["supervisor"] },
+                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
+                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
+                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
+                ]
+            },
+            {
+                id: 6,
+                tipoEvento:	"Matrimonio en hogar",
+                salon:	"Santa María de Manquehue 7530",
+                novios:	"Martin Del Valle y Dominga Santa Cruz",
+                fecha:	"2025-10-25",
+                genteCoctel:	190 ,
+                genteComida:	190 ,
+                genteFiesta:	10 ,
+                encargadoOficina:	"María José",
+                superMetre:	"Andrea",
+                cocineroJefe:	"Camila",
+                horarioCitacion:	"11:30",
+                horarioTermino:	"04:00",
+                horaMisa:	"18:30",
+                ceremonia:	"en otro lugar",
+                socioACargo:	"",
+                documents: [
+                    { name: "Minuta", url: "", roles: ["cocina", "supervisor"] },
+                    { name: "Menu", url: "", roles: ["supervisor", "supermetre", "cocina"] },
+                    { name: "Lista de despacho", url: "", roles: ["cocina"] },
+                    { name: "Plano", url: "", roles: ["supervisor", "supermetre"] },
+                    { name: "Elementos casa", url: "", roles: ["supermetre"] },
+                    { name: "Elementos manteleria", url: "", roles: ["supermetre"] },
+                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
+                    { name: "Vajilla", url: "", roles: ["supermetre"] },
+                    { name: "Elementos Bar", url: "", roles: ["supermetre"] },
+                    { name: "Bebestibles", url: "", roles: ["supermetre"] },
+                    { name: "Detalle de montaje", url: "", roles: ["supermetre"] },
+                    { name: "Proporcion Bajon", url: "", roles: ["cocina"] },
+                    { name: "Proporcion coctel", url: "", roles: ["cocina"] },
+                    { name: "Proporcion Comida Personal", url: "", roles: ["cocina"] },
+                    { name: "Proporcion entrada", url: "", roles: ["cocina"] },
+                    { name: "Proporcion PF", url: "", roles: ["cocina"] },
+                    { name: "Elementos postres", url: "", roles: ["cocina"] },
+                    { name: "Casos especiales", url: "", roles: ["cocina", "supermetre"] },
+                    { name: "Puestos por mesa", url: "", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Detalle evento", url: "", roles: ["cocina", "supermetre", "supervisor"] },
+                    { name: "Listas garzones", url: "", roles: ["supermetre", "supervisor"] },
+                    { name: "Tabla copetes", url: "", roles: ["supervisor"] },
+                    { name: "Receta flores", url: "", roles: ["supervisor"] },
+                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
+                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
+                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
+                ]
+            },
+            {
+                id: 7,
+                tipoEvento:	"Matrimonio en hogar",
+                salon:	"Tupungato 8960, Peñalolen",
+                novios:	"Sofia Barrena y Cristobal Ramirez",
+                fecha:	"2025-10-25",
+                genteCoctel:	252 ,
+                genteComida:	252 ,
+                genteFiesta:	10 ,
+                encargadoOficina:	"Cata M/Domi",
+                superMetre:	"Pablo",
                 cocineroJefe:	"Angelo/Marcelo",
                 horarioCitacion:	"12:00",
                 horarioTermino:	"04:00",
@@ -772,66 +865,20 @@
                 ]
             },
             {
-                id: 3,
-                tipoEvento:	"Matrimonio",
-                salon:	"Parque San Rafael",
-                novios:	"Jacinta Escobar y Joaquin Matthews",
-                fecha:	"2025-10-24",
-                genteCoctel:	366 ,
-                genteComida:	366 ,
-                genteFiesta:	102 ,
-                encargadoOficina:	"Rosario/Juan Carlos",
-                superMetre:	"Pablo",
-                cocineroJefe:	"Horte",
-                horarioCitacion:	"12:30",
-                horarioTermino:	"03:30",
-                horaMisa:	"17:30",
-                ceremonia:	"en el lugar",
-                socioACargo:	"",
-                documents: [
-                    { name: "Minuta", url: "", roles: ["cocina", "supervisor"] },
-                    { name: "Menu", url: "", roles: ["supervisor", "supermetre", "cocina"] },
-                    { name: "Lista de despacho", url: "", roles: ["cocina"] },
-                    { name: "Plano", url: "", roles: ["supervisor", "supermetre"] },
-                    { name: "Elementos casa", url: "", roles: ["supermetre"] },
-                    { name: "Elementos manteleria", url: "", roles: ["supermetre"] },
-                    { name: "Elementos logistica", url: "", roles: ["supermetre"] },
-                    { name: "Vajilla", url: "", roles: ["supermetre"] },
-                    { name: "Elementos Bar", url: "", roles: ["supermetre"] },
-                    { name: "Bebestibles", url: "", roles: ["supermetre"] },
-                    { name: "Detalle de montaje", url: "", roles: ["supermetre"] },
-                    { name: "Proporcion Bajon", url: "", roles: ["cocina"] },
-                    { name: "Proporcion coctel", url: "", roles: ["cocina"] },
-                    { name: "Proporcion Comida Personal", url: "", roles: ["cocina"] },
-                    { name: "Proporcion entrada", url: "", roles: ["cocina"] },
-                    { name: "Proporcion PF", url: "", roles: ["cocina"] },
-                    { name: "Elementos postres", url: "", roles: ["cocina"] },
-                    { name: "Casos especiales", url: "", roles: ["cocina", "supermetre"] },
-                    { name: "Puestos por mesa", url: "", roles: ["cocina", "supermetre", "supervisor"] },
-                    { name: "Detalle evento", url: "", roles: ["cocina", "supermetre", "supervisor"] },
-                    { name: "Listas garzones", url: "", roles: ["supermetre", "supervisor"] },
-                    { name: "Tabla copetes", url: "", roles: ["supervisor"] },
-                    { name: "Receta flores", url: "", roles: ["supervisor"] },
-                    { name: "Cheklist supervisores", url: "https://drive.google.com/file/d/10iEZ402T9t2bl2TzmtlMnDO8vFJD8GaP/view", roles: ["supervisor"] },
-                    { name: "Ultimos protocolos", url: "https://drive.google.com/file/d/1DdJsvN40mqIQTJol1q_ZguK2iR4uLpI7/view", roles: ["supervisor"] },
-                    { name: "Formato postres", url: "https://drive.google.com/file/d/1bcHAZu8RRUAE-IcYWdDKgJN_Lbi4R6SZ/view", roles: ["cocina"] }
-                ]
-            },
-            {
-                id: 4,
-                tipoEvento:	"Matrimonio",
-                salon:	"Chapanay",
-                novios:	"Antonia Bidart y Mtias Ruiz",
-                fecha:	"2025-10-25",
-                genteCoctel:	272 ,
-                genteComida:	272 ,
-                genteFiesta:	17 ,
-                encargadoOficina:	"Nene/Juan Carlos",
-                superMetre:	"Cona",
-                cocineroJefe:	"Jose/Estefi",
-                horarioCitacion:	"12:00",
-                horarioTermino:	"04:00",
-                horaMisa:	"17:00",
+                id: 8,
+                tipoEvento:	"Corporativo",
+                salon:	"Quebrada Honda Norte 11848",
+                novios:	"Javiera Cuevas y Felipe Vallette",
+                fecha:	"2025-10-26",
+                genteCoctel:	50 ,
+                genteComida:	50 ,
+                genteFiesta:	15 ,
+                encargadoOficina:	"Dolores",
+                superMetre:	"Coni V",
+                cocineroJefe:	"Edgardo",
+                horarioCitacion:	"00:00",
+                horarioTermino:	"21:00",
+                horaMisa:	"13:00",
                 ceremonia:	"en otro lugar",
                 socioACargo:	"",
                 documents: [
